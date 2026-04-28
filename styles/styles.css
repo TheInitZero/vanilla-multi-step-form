@@ -1,0 +1,7 @@
+@layer reset, custom-props, default, component, utility;
+
+@import url("./reset.css") layer(reset);
+@import url("./custom-props.css") layer(custom-props);
+@import url("./default.css") layer(default);
+@import url("./component.css") layer(component);
+@import url("./utility.css") layer(utility);

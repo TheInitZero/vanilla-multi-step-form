@@ -1,0 +1,233 @@
+.progress {
+    counter-reset: signup-progress;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-125);
+}
+
+.progressStep {
+    list-style-type: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &::before {
+        counter-increment: signup-progress;
+        content: counter(signup-progress);
+        display: grid;
+        place-content: center;
+        height: var(--space-175);
+        aspect-ratio: 1 / 1;
+        border: 2px solid var(--color-border-muted);
+        border-radius: 50%;
+        font-size: var(--font-size-small);
+    }
+
+    &[data-status="started"]::before {
+        border-color: var(--color-info);
+        background-color: var(--color-info);
+        color: var(--color-background-dark);
+    }
+
+    &[data-status="completed"]::before {
+        border-color: var(--color-success);
+        background-color: var(--color-success);
+        color: var(--color-background-dark);
+    }
+
+    &[aria-current="step"]::after {
+        content: "▴";
+        display: inline-block;
+        position: absolute;
+        bottom: calc(-1 * var(--space-125));
+        color: var(--color-text-muted);
+    }
+}
+
+.progressStep__title {
+    /* screen-reader-only */
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+
+    @media (width >= 640px) {
+        all: inherit;
+    }
+}
+
+.textField {
+    display: grid;
+    gap: var(--space-25);
+}
+
+.formStep__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.formStep__footer--flexEnd {
+    justify-content: flex-end;
+}
+
+.billingOptionGroup {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-100);
+
+    @media (width >= 768px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.billingOptionField {
+    position: relative;
+    padding: var(--space-75) var(--space-125);
+    border: 2px solid var(--color-background-light);
+    border-radius: var(--space-75);
+    background-color: var(--color-background-light);
+    box-shadow: var(--shadow);
+
+    &:has(:checked) {
+        border-color: var(--color-border);
+    }
+
+    &:focus-within {
+        outline: 2px solid var(--color-border-muted);
+        outline-offset: 2px;
+    }
+}
+
+.billingOptionField__radio:focus {
+    outline: none;
+}
+
+.billingOptionField__label {
+    display: block;
+}
+
+.billingOptionField__label::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.subscriptionOptionGroup {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-100);
+
+    @media (width >= 768px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.subscriptionOptionField {
+    position: relative;
+    padding: var(--space-75) var(--space-125);
+    border: 2px solid var(--color-background-light);
+    border-radius: var(--space-75);
+    background-color: var(--color-background-light);
+    box-shadow: var(--shadow);
+
+    &:has(:checked) {
+        border-color: var(--color-border);
+    }
+
+    &:focus-within {
+        outline: 2px solid var(--color-border-muted);
+        outline-offset: 2px;
+    }
+}
+
+.subscriptionOptionField__radio:focus {
+    outline: none;
+}
+
+.subscriptionOptionField__label::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.addOnOptionGroup {
+    display: grid;
+    gap: var(--space-100);
+
+    @media (width >= 640px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.addOnOptionField {
+    list-style-type: none;
+    position: relative;
+    padding: var(--space-75) var(--space-125);
+    border: 2px solid var(--color-background-light);
+    border-radius: var(--space-75);
+    background-color: var(--color-background-light);
+    box-shadow: var(--shadow);
+
+    &:has(:checked) {
+        border-color: var(--color-border);
+    }
+
+    &:focus-within {
+        outline: 2px solid var(--color-border-muted);
+        outline-offset: 2px;
+    }
+}
+
+.addOnOptionField__checkbox:focus {
+    outline: none;
+}
+
+.addOnOptionDescription__label::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.addOnOptionDescription__price {
+    margin-block-start: var(--space-25);
+}
+
+.formStep__main--highlight {
+    padding: var(--space-100);
+    border: none;
+    border-radius: var(--space-100);
+    background-color: var(--color-background-light);
+    box-shadow: var(--shadow);
+}
+
+.subscriptionSummary__description {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.subscriptionSummary__button {
+    padding: unset;
+    border: unset;
+    border-radius: unset;
+    background-color: unset;
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.addOnsSummary__description {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.totalSummary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -1,0 +1,50 @@
+:root {
+    /* Colors */
+    --color-background-dark: hsl(247, 20%, 90%);
+    --color-background: hsl(247, 20%, 95%);
+    --color-background-light: hsl(247, 20%, 100%);
+
+    --color-text: hsl(247, 10%, 5%);
+    --color-text-muted: hsl(247, 10%, 50%);
+
+    --color-primary: hsl(247, 91%, 59%);
+    --color-danger: hsl(357, 100%, 45%);
+    --color-info: hsl(221, 97%, 53%);
+    --color-warning: hsl(30, 100%, 44%);
+    --color-success: hsl(160, 100%, 30%);
+
+    --color-border: hsl(247, 50%, 33%);
+    --color-border-muted: hsl(247, 50%, 66%);
+
+    /* Box shadow */
+    --shadow:
+        0px 2px 2px hsla(0, 0%, 0%, 0.07), 0px 4px 4px hsla(0, 0%, 0%, 0.15);
+
+    /* Typography */
+    /* font-weight: regular | bold */
+    --font-family: "Roboto", sans-serif;
+    --scale: 1.33;
+    --font-size-small: 0.75rem;
+    --font-size: calc(var(--font-size-small) * var(--scale));
+    --font-size-large: calc(var(--font-size) * var(--scale));
+    --font-size-xl: calc(var(--font-size-large) * var(--scale));
+    --font-size-2xl: calc(var(--font-size-xl) * var(--scale));
+    --font-size-3xl: calc(var(--font-size-2xl) * var(--scale));
+    --line-height: 1.5;
+    --line-height-heading: 1.2;
+
+    /* Spacing */
+    --space-25: 0.19rem;
+    --space-50: calc(var(--space-25) * 2);
+    --space-75: calc(var(--space-25) * 3);
+    --space-100: calc(var(--space-25) * 4);
+    --space-125: calc(var(--space-25) * 5);
+    --space-150: calc(var(--space-25) * 6);
+    --space-175: calc(var(--space-25) * 7);
+    --space-200: calc(var(--space-25) * 8);
+
+    @media (width >= 480px) {
+        --font-size-small: 1rem;
+        --space-25: 0.25rem;
+    }
+}

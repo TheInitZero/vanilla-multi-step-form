@@ -1,0 +1,102 @@
+.container {
+    max-inline-size: calc(40 * var(--space-100));
+    padding: var(--space-150);
+    margin-inline: auto;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--color-text-muted);
+}
+
+.text-small {
+    font-size: var(--font-size-small);
+}
+
+.text-base {
+    font-size: var(--font-size);
+}
+
+.text-large {
+    font-size: var(--font-size-large);
+}
+
+.text-xl {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-heading);
+}
+
+.text-2xl {
+    font-size: var(--font-size-2xl);
+    line-height: var(--line-height-heading);
+}
+
+.text-3xl {
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-height-heading);
+}
+
+.text-danger {
+    color: var(--color-danger);
+}
+
+.screen-reader-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.card {
+    padding: var(--space-150);
+    border: none;
+    border-radius: var(--space-150);
+    background-color: var(--color-background);
+    box-shadow: var(--shadow);
+}
+
+.button-primary {
+    background-color: var(--color-primary);
+    color: var(--color-background-dark);
+}
+
+.flow-25 > * + * {
+    margin-block-start: var(--space-25);
+}
+
+.flow-50 > * + * {
+    margin-block-start: var(--space-50);
+}
+
+.flow-75 > * + * {
+    margin-block-start: var(--space-75);
+}
+
+.flow-100 > * + * {
+    margin-block-start: var(--space-100);
+}
+
+.flow-125 > * + * {
+    margin-block-start: var(--space-125);
+}
+
+.flow-150 > * + * {
+    margin-block-start: var(--space-150);
+}
+
+.flow-175 > * + * {
+    margin-block-start: var(--space-175);
+}
+
+.flow-200 > * + * {
+    margin-block-start: var(--space-200);
+}
