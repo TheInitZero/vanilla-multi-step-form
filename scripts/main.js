@@ -10,15 +10,15 @@ import { data } from "./data.js";
 let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
 
 let nodeStepYourInfo = nodeSignupForm.querySelector("[data-component='StepYourInfo']");
-new InputField(
+let componentInputFieldName = new InputField(
     nodeStepYourInfo.querySelector("[data-component='InputField'][data-for='name']"),
     validateName
 );
-new InputField(
+let componentInputFieldEmail = new InputField(
     nodeStepYourInfo.querySelector("[data-component='InputField'][data-for='email']"),
     validateEmail
 );
-new InputField(
+let componentInputFieldTel = new InputField(
     nodeStepYourInfo.querySelector("[data-component='InputField'][data-for='tel']"),
     validateTel
 );
@@ -168,17 +168,10 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 });
 
 document.addEventListener("YOUR_INFO.UPDATE", function () {
-    let formData = new FormData(nodeSignupForm);
-
-    let personalInfoName = formData.get("personalInfoName");
-    let personalInfoEmail = formData.get("personalInfoEmail");
-    let personalInfoTel = formData.get("personalInfoTel");
-
-    let [isNameValid] = validateName(personalInfoName);
-    let [isEmailValid] = validateEmail(personalInfoEmail);
-    let [isTelValid] = validateTel(personalInfoTel);
-
-    let isInfoValid = isNameValid && isEmailValid && isTelValid;
+    let isInfoValid =
+        componentInputFieldName.isValid &&
+        componentInputFieldEmail.isValid &&
+        componentInputFieldTel.isValid;
 
     if (isInfoValid) {
         buttonNextYourInfo.removeAttribute("disabled");
@@ -224,17 +217,10 @@ radioBillingFreqYearly.addEventListener("change", function () {
 });
 
 buttonNextYourInfo.addEventListener("click", function () {
-    let formData = new FormData(nodeSignupForm);
-
-    let personalInfoName = formData.get("personalInfoName");
-    let personalInfoEmail = formData.get("personalInfoEmail");
-    let personalInfoTel = formData.get("personalInfoTel");
-
-    let [isNameValid] = validateName(personalInfoName);
-    let [isEmailValid] = validateEmail(personalInfoEmail);
-    let [isTelValid] = validateTel(personalInfoTel);
-
-    let isInfoValid = isNameValid && isEmailValid && isTelValid;
+    let isInfoValid =
+        componentInputFieldName.isValid &&
+        componentInputFieldEmail.isValid &&
+        componentInputFieldTel.isValid;
 
     signupProgressActor.send({ type: "YOUR_INFO.NEXT", isInfoValid });
 });

@@ -2,6 +2,7 @@ export class InputField {
     constructor(node, validate) {
         this.nodeInput = node.querySelector("[data-component='InputField_input']");
         this.nodeError = node.querySelector("[data-component='InputField_error']");
+        this.validate = validate;
 
         this.nodeInput.addEventListener("input", function () {
             let customEvent = new CustomEvent("YOUR_INFO.UPDATE");
@@ -9,7 +10,7 @@ export class InputField {
         });
 
         this.nodeInput.addEventListener("change", () => {
-            let [isValid, errMsg] = validate(this.nodeInput.value);
+            let [isValid, errMsg] = this.validate(this.nodeInput.value);
 
             if (isValid) {
                 this.markAsValid();
@@ -17,6 +18,11 @@ export class InputField {
                 this.markAsInvalid(errMsg);
             }
         });
+    }
+
+    get isValid() {
+        let [isValid] = this.validate(this.nodeInput.value);
+        return isValid;
     }
 
     markAsValid() {
