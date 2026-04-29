@@ -7,7 +7,7 @@ import {
 } from "./input.js";
 import { data } from "./data.js";
 
-let nodeSignupForm = document.getElementById("signup-form");
+let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
 
 let fieldsetStepYourInfo = document.getElementById("fieldset-step-your-info");
 let fieldsetStepSelectPlan = document.getElementById(
