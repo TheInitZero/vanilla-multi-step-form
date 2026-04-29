@@ -58,12 +58,7 @@ let buttonChangeSubscriptionSummary = document.getElementById(
 );
 let buttonBackSummary = document.getElementById("button-back-summary");
 
-let progressSteps = [
-    ProgressStep(document.getElementById("step-your-info")),
-    ProgressStep(document.getElementById("step-select-plan")),
-    ProgressStep(document.getElementById("step-add-ons")),
-    ProgressStep(document.getElementById("step-summary")),
-];
+let progressSteps = Array.from(document.querySelectorAll("[data-component='SignupProgressStep']")).map(ProgressStep);
 
 let signupProgressActor = SignupProgressActor();
 
