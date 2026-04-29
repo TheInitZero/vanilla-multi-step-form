@@ -7,7 +7,7 @@ import {
 } from "./input.js";
 import { data } from "./data.js";
 
-let signupForm = document.getElementById("signup-form");
+let nodeSignupForm = document.getElementById("signup-form");
 
 let fieldsetStepYourInfo = document.getElementById("fieldset-step-your-info");
 let fieldsetStepSelectPlan = document.getElementById(
@@ -112,7 +112,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
     if (model.currentStep != "summary") return;
 
-    let formData = new FormData(signupForm);
+    let formData = new FormData(nodeSignupForm);
     let billingFreq = formData.get("billingFreq");
     let subLevel = formData.get("subLevel");
     let addOns = formData.getAll("addOns");
@@ -165,7 +165,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 });
 
 document.addEventListener("YOUR_INFO.UPDATE", function () {
-    let formData = new FormData(signupForm);
+    let formData = new FormData(nodeSignupForm);
 
     let personalInfoName = formData.get("personalInfoName");
     let personalInfoEmail = formData.get("personalInfoEmail");
@@ -266,7 +266,7 @@ radioBillingFreqYearly.addEventListener("change", function () {
 });
 
 buttonNextYourInfo.addEventListener("click", function () {
-    let formData = new FormData(signupForm);
+    let formData = new FormData(nodeSignupForm);
 
     let personalInfoName = formData.get("personalInfoName");
     let personalInfoEmail = formData.get("personalInfoEmail");
@@ -305,6 +305,6 @@ buttonBackSummary.addEventListener("click", function () {
     signupProgressActor.send({ type: "SUMMARY.BACK" });
 });
 
-signupForm.addEventListener("submit", function () {
+nodeSignupForm.addEventListener("submit", function () {
     signupProgressActor.send({ type: "SUMMARY.CONFIRM" });
 });
