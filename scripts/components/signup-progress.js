@@ -1,4 +1,4 @@
-export function ProgressStep(node) {
+export function SignupProgressStep(node) {
     let description = node.querySelector(`#${node.id}-description`);
 
     let statusDescriptions = {
@@ -7,10 +7,10 @@ export function ProgressStep(node) {
         notStarted: "Not started",
     };
 
-    return { getId, getStatus, setStatus, getIsCurrent, setIsCurrent };
+    return { getKey, getStatus, setStatus, getIsCurrent, setIsCurrent };
 
-    function getId() {
-        return node.id;
+    function getKey() {
+        return node.dataset.key;
     }
 
     function getStatus() {
@@ -33,12 +33,12 @@ export function ProgressStep(node) {
 
 export function SignupProgressActor() {
     let model = {
-        currentStep: "step-your-info",
+        currentStep: "your-info",
         statuses: {
-            "step-your-info": "started",
-            "step-select-plan": "notStarted",
-            "step-add-ons": "notStarted",
-            "step-summary": "notStarted",
+            "your-info": "started",
+            "select-plan": "notStarted",
+            "add-ons": "notStarted",
+            "summary": "notStarted",
         },
     };
 
@@ -47,7 +47,7 @@ export function SignupProgressActor() {
     function update(model, event) {
         switch (event.type) {
             case "YOUR_INFO.NEXT": {
-                if (model.currentStep != "step-your-info") {
+                if (model.currentStep != "your-info") {
                     return model;
                 }
 
@@ -58,17 +58,17 @@ export function SignupProgressActor() {
                 let nextStatuses = (function () {
                     let statuses = { ...model.statuses };
 
-                    statuses["step-your-info"] = "completed";
+                    statuses["your-info"] = "completed";
 
-                    statuses["step-select-plan"] =
-                        statuses["step-select-plan"] == "completed"
+                    statuses["select-plan"] =
+                        statuses["select-plan"] == "completed"
                             ? "completed"
                             : "started";
 
                     return statuses;
                 })();
 
-                let nextStep = "step-select-plan";
+                let nextStep = "select-plan";
 
                 return {
                     ...model,
@@ -78,11 +78,11 @@ export function SignupProgressActor() {
             }
 
             case "SELECT_PLAN.BACK": {
-                if (model.currentStep != "step-select-plan") {
+                if (model.currentStep != "select-plan") {
                     return model;
                 }
 
-                let nextStep = "step-your-info";
+                let nextStep = "your-info";
 
                 return {
                     ...model,
@@ -91,22 +91,22 @@ export function SignupProgressActor() {
             }
 
             case "SELECT_PLAN.NEXT": {
-                if (model.currentStep != "step-select-plan") {
+                if (model.currentStep != "select-plan") {
                     return model;
                 }
 
                 let nextStatuses = (function () {
                     let statuses = { ...model.statuses };
 
-                    statuses["step-select-plan"] = "completed";
+                    statuses["select-plan"] = "completed";
 
-                    statuses["step-add-ons"] =
-                        statuses["step-add-ons"] == "completed" ? "completed" : "started";
+                    statuses["add-ons"] =
+                        statuses["add-ons"] == "completed" ? "completed" : "started";
 
                     return statuses;
                 })();
 
-                let nextStep = "step-add-ons";
+                let nextStep = "add-ons";
 
                 return {
                     ...model,
@@ -116,11 +116,11 @@ export function SignupProgressActor() {
             }
 
             case "ADD_ONS.BACK": {
-                if (model.currentStep != "step-add-ons") {
+                if (model.currentStep != "add-ons") {
                     return model;
                 }
 
-                let nextStep = "step-select-plan";
+                let nextStep = "select-plan";
 
                 return {
                     ...model,
@@ -129,17 +129,17 @@ export function SignupProgressActor() {
             }
 
             case "ADD_ONS.NEXT": {
-                if (model.currentStep != "step-add-ons") {
+                if (model.currentStep != "add-ons") {
                     return model;
                 }
 
                 let nextStatuses = {
                     ...model.statuses,
-                    "step-add-ons": "completed",
-                    "step-summary": "started",
+                    "add-ons": "completed",
+                    "summary": "started",
                 };
 
-                let nextStep = "step-summary";
+                let nextStep = "summary";
 
                 return {
                     ...model,
@@ -149,11 +149,11 @@ export function SignupProgressActor() {
             }
 
             case "SUMMARY.BACK": {
-                if (model.currentStep != "step-summary") {
+                if (model.currentStep != "summary") {
                     return model;
                 }
 
-                let nextStep = "step-add-ons";
+                let nextStep = "add-ons";
 
                 return {
                     ...model,
@@ -162,12 +162,12 @@ export function SignupProgressActor() {
             }
 
             case "SUMMARY.CHANGE_SUBSCRIPTION": {
-                if (model.currentStep != "step-summary") {
+                if (model.currentStep != "summary") {
                     return model;
                 }
 
                 let nextStatuses = model.statuses;
-                let nextStep = "step-select-plan";
+                let nextStep = "select-plan";
 
                 return {
                     ...model,
@@ -177,16 +177,16 @@ export function SignupProgressActor() {
             }
 
             case "SUMMARY.CONFIRM": {
-                if (model.currentStep != "step-summary") {
+                if (model.currentStep != "summary") {
                     return model;
                 }
 
                 let nextStatuses = {
                     ...model.statuses,
-                    "step-summary": "completed",
+                    "summary": "completed",
                 };
 
-                let nextStep = "step-summary";
+                let nextStep = "summary";
 
                 return {
                     ...model,

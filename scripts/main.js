@@ -1,4 +1,4 @@
-import { ProgressStep, SignupProgressActor } from "./signup-progress.js";
+import { SignupProgressStep, SignupProgressActor } from "./components/signup-progress.js";
 import {
     InputField,
     validateEmail,
@@ -58,28 +58,23 @@ let buttonChangeSubscriptionSummary = document.getElementById(
 );
 let buttonBackSummary = document.getElementById("button-back-summary");
 
-let progressSteps = [
-    ProgressStep(document.getElementById("step-your-info")),
-    ProgressStep(document.getElementById("step-select-plan")),
-    ProgressStep(document.getElementById("step-add-ons")),
-    ProgressStep(document.getElementById("step-summary")),
-];
+let componentsSignupProgressStep = Array.from(document.querySelectorAll("[data-component='SignupProgressStep']")).map(SignupProgressStep);
 
 let signupProgressActor = SignupProgressActor();
 
 document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     let model = event.detail;
 
-    for (let step of progressSteps) {
-        step.setStatus(model.statuses[step.getId()]);
-        step.setIsCurrent(step.getId() == model.currentStep);
+    for (let component of componentsSignupProgressStep) {
+        component.setStatus(model.statuses[component.getKey()]);
+        component.setIsCurrent(component.getKey() == model.currentStep);
     }
 });
 
 document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     let model = event.detail;
 
-    if (model.currentStep == "step-your-info") {
+    if (model.currentStep == "your-info") {
         fieldsetStepYourInfo.hidden = false;
         fieldsetStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = true;
@@ -87,7 +82,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         return;
     }
 
-    if (model.currentStep == "step-select-plan") {
+    if (model.currentStep == "select-plan") {
         fieldsetStepYourInfo.hidden = true;
         fieldsetStepSelectPlan.hidden = false;
         fieldsetStepAddOns.hidden = true;
@@ -95,7 +90,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         return;
     }
 
-    if (model.currentStep == "step-add-ons") {
+    if (model.currentStep == "add-ons") {
         fieldsetStepYourInfo.hidden = true;
         fieldsetStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = false;
@@ -103,7 +98,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         return;
     }
 
-    if (model.currentStep == "step-summary") {
+    if (model.currentStep == "summary") {
         fieldsetStepYourInfo.hidden = true;
         fieldsetStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = true;
@@ -115,7 +110,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     let model = event.detail;
 
-    if (model.currentStep != "step-summary") return;
+    if (model.currentStep != "summary") return;
 
     let formData = new FormData(signupForm);
     let billingFreq = formData.get("billingFreq");
