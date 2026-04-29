@@ -4,28 +4,31 @@ import {
     validateEmail,
     validateName,
     validateTel,
-} from "./input.js";
+} from "./components/input-field.js";
 import { data } from "./data.js";
 
-let signupForm = document.getElementById("signup-form");
+let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
 
-let fieldsetStepYourInfo = document.getElementById("fieldset-step-your-info");
+let nodeStepYourInfo = nodeSignupForm.querySelector("[data-component='StepYourInfo']");
+let componentInputFieldName = new InputField(
+    nodeStepYourInfo.querySelector("[data-component='InputField'][data-for='name']"),
+    validateName
+);
+let componentInputFieldEmail = new InputField(
+    nodeStepYourInfo.querySelector("[data-component='InputField'][data-for='email']"),
+    validateEmail
+);
+let componentInputFieldTel = new InputField(
+    nodeStepYourInfo.querySelector("[data-component='InputField'][data-for='tel']"),
+    validateTel
+);
+
 let fieldsetStepSelectPlan = document.getElementById(
     "fieldset-step-select-plan",
 );
 let fieldsetStepAddOns = document.getElementById("fieldset-step-add-ons");
 let sectionStepSummary = document.getElementById("section-step-summary");
 
-let inputName = fieldsetStepYourInfo.querySelector("#inputName");
-let inputNameErr = fieldsetStepYourInfo.querySelector("#inputNameErr");
-let inputEmail = fieldsetStepYourInfo.querySelector("#inputEmail");
-let inputEmailErr = fieldsetStepYourInfo.querySelector("#inputEmailErr");
-let inputTel = fieldsetStepYourInfo.querySelector("#inputTel");
-let inputTelErr = fieldsetStepYourInfo.querySelector("#inputTelErr");
-
-let inputFieldName = InputField(inputName, inputNameErr);
-let inputFieldEmail = InputField(inputEmail, inputEmailErr);
-let inputFieldTel = InputField(inputTel, inputTelErr);
 
 let radioBillingFreqMonthly = document.getElementById(
     "radioBillingFreqMonthly",
@@ -75,7 +78,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     let model = event.detail;
 
     if (model.currentStep == "your-info") {
-        fieldsetStepYourInfo.hidden = false;
+        nodeStepYourInfo.hidden = false;
         fieldsetStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = true;
         sectionStepSummary.hidden = true;
@@ -83,7 +86,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     }
 
     if (model.currentStep == "select-plan") {
-        fieldsetStepYourInfo.hidden = true;
+        nodeStepYourInfo.hidden = true;
         fieldsetStepSelectPlan.hidden = false;
         fieldsetStepAddOns.hidden = true;
         sectionStepSummary.hidden = true;
@@ -91,7 +94,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     }
 
     if (model.currentStep == "add-ons") {
-        fieldsetStepYourInfo.hidden = true;
+        nodeStepYourInfo.hidden = true;
         fieldsetStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = false;
         sectionStepSummary.hidden = true;
@@ -99,7 +102,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     }
 
     if (model.currentStep == "summary") {
-        fieldsetStepYourInfo.hidden = true;
+        nodeStepYourInfo.hidden = true;
         fieldsetStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = true;
         sectionStepSummary.hidden = false;
@@ -112,7 +115,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
     if (model.currentStep != "summary") return;
 
-    let formData = new FormData(signupForm);
+    let formData = new FormData(nodeSignupForm);
     let billingFreq = formData.get("billingFreq");
     let subLevel = formData.get("subLevel");
     let addOns = formData.getAll("addOns");
@@ -165,17 +168,10 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 });
 
 document.addEventListener("YOUR_INFO.UPDATE", function () {
-    let formData = new FormData(signupForm);
-
-    let personalInfoName = formData.get("personalInfoName");
-    let personalInfoEmail = formData.get("personalInfoEmail");
-    let personalInfoTel = formData.get("personalInfoTel");
-
-    let [isNameValid] = validateName(personalInfoName);
-    let [isEmailValid] = validateEmail(personalInfoEmail);
-    let [isTelValid] = validateTel(personalInfoTel);
-
-    let isInfoValid = isNameValid && isEmailValid && isTelValid;
+    let isInfoValid =
+        componentInputFieldName.isValid &&
+        componentInputFieldEmail.isValid &&
+        componentInputFieldTel.isValid;
 
     if (isInfoValid) {
         buttonNextYourInfo.removeAttribute("disabled");
@@ -206,51 +202,6 @@ document.addEventListener("BILLING_FREQ.CHANGE", function (event) {
     }
 });
 
-inputName.addEventListener("input", function () {
-    let customEvent = new CustomEvent("YOUR_INFO.UPDATE");
-    document.dispatchEvent(customEvent);
-});
-
-inputName.addEventListener("change", function () {
-    let [isValid, errMsg] = validateName(inputName.value);
-
-    if (isValid) {
-        inputFieldName.markAsValid();
-    } else {
-        inputFieldName.markAsInvalid(errMsg);
-    }
-});
-
-inputEmail.addEventListener("input", function () {
-    let customEvent = new CustomEvent("YOUR_INFO.UPDATE");
-    document.dispatchEvent(customEvent);
-});
-
-inputEmail.addEventListener("change", function () {
-    let [isValid, errMsg] = validateEmail(inputEmail.value);
-
-    if (isValid) {
-        inputFieldEmail.markAsValid();
-    } else {
-        inputFieldEmail.markAsInvalid(errMsg);
-    }
-});
-
-inputTel.addEventListener("input", function () {
-    let customEvent = new CustomEvent("YOUR_INFO.UPDATE");
-    document.dispatchEvent(customEvent);
-});
-
-inputTel.addEventListener("change", function () {
-    let [isValid, errMsg] = validateTel(inputTel.value);
-
-    if (isValid) {
-        inputFieldTel.markAsValid();
-    } else {
-        inputFieldTel.markAsInvalid(errMsg);
-    }
-});
-
 radioBillingFreqMonthly.addEventListener("change", function () {
     let customEvent = new CustomEvent("BILLING_FREQ.CHANGE", {
         detail: radioBillingFreqMonthly.value,
@@ -266,17 +217,10 @@ radioBillingFreqYearly.addEventListener("change", function () {
 });
 
 buttonNextYourInfo.addEventListener("click", function () {
-    let formData = new FormData(signupForm);
-
-    let personalInfoName = formData.get("personalInfoName");
-    let personalInfoEmail = formData.get("personalInfoEmail");
-    let personalInfoTel = formData.get("personalInfoTel");
-
-    let [isNameValid] = validateName(personalInfoName);
-    let [isEmailValid] = validateEmail(personalInfoEmail);
-    let [isTelValid] = validateTel(personalInfoTel);
-
-    let isInfoValid = isNameValid && isEmailValid && isTelValid;
+    let isInfoValid =
+        componentInputFieldName.isValid &&
+        componentInputFieldEmail.isValid &&
+        componentInputFieldTel.isValid;
 
     signupProgressActor.send({ type: "YOUR_INFO.NEXT", isInfoValid });
 });
@@ -305,6 +249,6 @@ buttonBackSummary.addEventListener("click", function () {
     signupProgressActor.send({ type: "SUMMARY.BACK" });
 });
 
-signupForm.addEventListener("submit", function () {
+nodeSignupForm.addEventListener("submit", function () {
     signupProgressActor.send({ type: "SUMMARY.CONFIRM" });
 });

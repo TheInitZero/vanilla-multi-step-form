@@ -132,10 +132,12 @@
             <form
                 id="signup-form"
                 class="form"
+                data-component="SignupForm"
             >
                 <fieldset
                     id="fieldset-step-your-info"
                     class="formStep flow-150"
+                    data-component="StepYourInfo"
                 >
                     <div class="formStep__header">
                         <legend class="text-bold text-large">
@@ -148,60 +150,78 @@
                     </div>
 
                     <div class="formStep__main flow-150">
-                        <div class="textField">
-                            <label for="inputName">Name</label>
+                        <div
+                            class="textField"
+                            data-component="InputField"
+                            data-for="name"
+                        >
+                            <label for="input-name">Name</label>
                             <input
+                                id="input-name"
                                 type="text"
                                 name="personalInfoName"
-                                id="inputName"
                                 placeholder="e.g. Stephen King"
                                 autocomplete="name"
                                 aria-invalid="false"
-                                aria-describedby="inputNameErr"
+                                aria-describedby="input-name-error"
                                 required
+                                data-component="InputField_input"
                             />
                             <span
-                                id="inputNameErr"
-                                aria-live="assertive"
+                                id="input-name-error"
                                 class="text-bold text-small text-danger"
+                                aria-live="assertive"
+                                data-component="InputField_error"
                             ></span>
                         </div>
 
-                        <div class="textField">
-                            <label for="inputEmail">Email address</label>
+                        <div
+                            class="textField"
+                            data-component="InputField"
+                            data-for="email"
+                        >
+                            <label for="input-email">Email address</label>
                             <input
+                                id="input-email"
                                 type="email"
                                 name="personalInfoEmail"
-                                id="inputEmail"
                                 placeholder="e.g. stephenKing42@hotmail.com"
                                 autocomplete="email"
                                 aria-invalid="false"
-                                aria-describedby="inputEmailErr"
+                                aria-describedby="input-email-error"
                                 required
+                                data-component="InputField_input"
                             />
                             <span
-                                id="inputEmailErr"
-                                aria-live="assertive"
+                                id="input-email-error"
                                 class="text-bold text-small text-danger"
+                                aria-live="assertive"
+                                data-component="InputField_error"
                             ></span>
                         </div>
 
-                        <div class="textField">
-                            <label for="inputTel">Phone number</label>
+                        <div
+                            class="textField"
+                            data-component="InputField"
+                            data-for="tel"
+                        >
+                            <label for="input-tel">Phone number</label>
                             <input
+                                id="input-tel"
                                 type="tel"
                                 name="personalInfoTel"
-                                id="inputTel"
                                 placeholder="e.g. +1 234 567 890"
                                 autocomplete="tel"
                                 aria-invalid="false"
-                                aria-describedby="inputTelErr"
+                                aria-describedby="input-tel-error"
                                 required
+                                data-component="InputField_input"
                             />
                             <span
-                                id="inputTelErr"
-                                aria-live="assertive"
+                                id="input-tel-error"
                                 class="text-bold text-small text-danger"
+                                aria-live="assertive"
+                                data-component="InputField_error"
                             ></span>
                         </div>
                     </div>
