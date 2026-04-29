@@ -9,7 +9,7 @@ import { data } from "./data.js";
 
 let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
 
-let nodeStepYourInfo = document.getElementById("fieldset-step-your-info");
+let nodeStepYourInfo = nodeSignupForm.querySelector("[data-component='StepYourInfo']");
 let fieldsetStepSelectPlan = document.getElementById(
     "fieldset-step-select-plan",
 );
