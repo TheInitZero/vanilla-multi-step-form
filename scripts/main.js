@@ -58,14 +58,14 @@ let buttonChangeSubscriptionSummary = document.getElementById(
 );
 let buttonBackSummary = document.getElementById("button-back-summary");
 
-let progressSteps = Array.from(document.querySelectorAll("[data-component='SignupProgressStep']")).map(ProgressStep);
+let componentsSignupProgressStep = Array.from(document.querySelectorAll("[data-component='SignupProgressStep']")).map(ProgressStep);
 
 let signupProgressActor = SignupProgressActor();
 
 document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     let model = event.detail;
 
-    for (let step of progressSteps) {
+    for (let step of componentsSignupProgressStep) {
         step.setStatus(model.statuses[step.getId()]);
         step.setIsCurrent(step.getId() == model.currentStep);
     }
