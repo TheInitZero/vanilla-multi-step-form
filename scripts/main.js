@@ -1,4 +1,4 @@
-import { SignupProgressStep, SignupProgressActor } from "./signup-progress.js";
+import { SignupProgressStep, SignupProgressActor } from "./components/signup-progress.js";
 import {
     InputField,
     validateEmail,
