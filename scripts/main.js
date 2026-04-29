@@ -9,19 +9,19 @@ import { data } from "./data.js";
 
 let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
 
-let fieldsetStepYourInfo = document.getElementById("fieldset-step-your-info");
+let nodeStepYourInfo = document.getElementById("fieldset-step-your-info");
 let fieldsetStepSelectPlan = document.getElementById(
     "fieldset-step-select-plan",
 );
 let fieldsetStepAddOns = document.getElementById("fieldset-step-add-ons");
 let sectionStepSummary = document.getElementById("section-step-summary");
 
-let inputName = fieldsetStepYourInfo.querySelector("#inputName");
-let inputNameErr = fieldsetStepYourInfo.querySelector("#inputNameErr");
-let inputEmail = fieldsetStepYourInfo.querySelector("#inputEmail");
-let inputEmailErr = fieldsetStepYourInfo.querySelector("#inputEmailErr");
-let inputTel = fieldsetStepYourInfo.querySelector("#inputTel");
-let inputTelErr = fieldsetStepYourInfo.querySelector("#inputTelErr");
+let inputName = nodeStepYourInfo.querySelector("#inputName");
+let inputNameErr = nodeStepYourInfo.querySelector("#inputNameErr");
+let inputEmail = nodeStepYourInfo.querySelector("#inputEmail");
+let inputEmailErr = nodeStepYourInfo.querySelector("#inputEmailErr");
+let inputTel = nodeStepYourInfo.querySelector("#inputTel");
+let inputTelErr = nodeStepYourInfo.querySelector("#inputTelErr");
 
 let inputFieldName = InputField(inputName, inputNameErr);
 let inputFieldEmail = InputField(inputEmail, inputEmailErr);
@@ -75,7 +75,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     let model = event.detail;
 
     if (model.currentStep == "your-info") {
-        fieldsetStepYourInfo.hidden = false;
+        nodeStepYourInfo.hidden = false;
         fieldsetStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = true;
         sectionStepSummary.hidden = true;
@@ -83,7 +83,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     }
 
     if (model.currentStep == "select-plan") {
-        fieldsetStepYourInfo.hidden = true;
+        nodeStepYourInfo.hidden = true;
         fieldsetStepSelectPlan.hidden = false;
         fieldsetStepAddOns.hidden = true;
         sectionStepSummary.hidden = true;
@@ -91,7 +91,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     }
 
     if (model.currentStep == "add-ons") {
-        fieldsetStepYourInfo.hidden = true;
+        nodeStepYourInfo.hidden = true;
         fieldsetStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = false;
         sectionStepSummary.hidden = true;
@@ -99,7 +99,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     }
 
     if (model.currentStep == "summary") {
-        fieldsetStepYourInfo.hidden = true;
+        nodeStepYourInfo.hidden = true;
         fieldsetStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = true;
         sectionStepSummary.hidden = false;
