@@ -3,10 +3,19 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
     <title>Step 1 of 5: Your info | Signup</title>
-    <link rel="stylesheet" href="./styles/styles.css" />
-    <script type="module" src="./scripts/main.js"></script>
+    <link
+        rel="stylesheet"
+        href="./styles/styles.css"
+    />
+    <script
+        type="module"
+        src="./scripts/main.js"
+    ></script>
 </head>
 
 <body>
@@ -15,45 +24,93 @@
             <h1 class="text-bold text-center text-xl">Signup</h1>
         </header>
 
-        <aside aria-label="Signup progress" class="card">
+        <aside
+            aria-label="Signup progress"
+            class="card"
+        >
             <ol class="progress">
-                <li id="step-your-info" aria-current="step" aria-labelledby="step-your-info-label"
-                    aria-describedby="step-your-info-description" class="progressStep" data-status="started">
-                    <p id="step-your-info-label" class="progressStep__title">
+                <li
+                    id="step-your-info"
+                    class="progressStep"
+                    aria-current="step"
+                    aria-labelledby="step-your-info-label"
+                    aria-describedby="step-your-info-description"
+                    data-status="started"
+                >
+                    <p
+                        id="step-your-info-label"
+                        class="progressStep__title"
+                    >
                         Your info
                     </p>
                     <!-- Started | Not started | Completed -->
-                    <p id="step-your-info-description" class="screen-reader-only">
+                    <p
+                        id="step-your-info-description"
+                        class="screen-reader-only"
+                    >
                         Started
                     </p>
                 </li>
 
-                <li id="step-select-plan" aria-labelledby="step-select-plan-label"
-                    aria-describedby="step-select-plan-description" class="progressStep" data-status="notStarted">
-                    <p id="step-select-plan-label" class="progressStep__title">
+                <li
+                    id="step-select-plan"
+                    class="progressStep"
+                    aria-labelledby="step-select-plan-label"
+                    aria-describedby="step-select-plan-description"
+                    data-status="notStarted"
+                >
+                    <p
+                        id="step-select-plan-label"
+                        class="progressStep__title"
+                    >
                         Select plan
                     </p>
-                    <p id="step-select-plan-description" class="screen-reader-only">
+                    <p
+                        id="step-select-plan-description"
+                        class="screen-reader-only"
+                    >
                         Not started
                     </p>
                 </li>
 
-                <li id="step-add-ons" aria-labelledby="step-add-ons-label" aria-describedby="step-add-ons-description"
-                    class="progressStep" data-status="notStarted">
-                    <p id="step-add-ons-label" class="progressStep__title">
+                <li
+                    id="step-add-ons"
+                    class="progressStep"
+                    aria-labelledby="step-add-ons-label"
+                    aria-describedby="step-add-ons-description"
+                    data-status="notStarted"
+                >
+                    <p
+                        id="step-add-ons-label"
+                        class="progressStep__title"
+                    >
                         Add ons
                     </p>
-                    <p id="step-add-ons-description" class="screen-reader-only">
+                    <p
+                        id="step-add-ons-description"
+                        class="screen-reader-only"
+                    >
                         Not started
                     </p>
                 </li>
 
-                <li id="step-summary" aria-labelledby="step-summary-label" aria-describedby="step-summary-description"
-                    class="progressStep" data-status="notStarted">
-                    <p id="step-summary-label" class="progressStep__title">
+                <li
+                    id="step-summary"
+                    class="progressStep"
+                    aria-labelledby="step-summary-label"
+                    aria-describedby="step-summary-description"
+                    data-status="notStarted"
+                >
+                    <p
+                        id="step-summary-label"
+                        class="progressStep__title"
+                    >
                         Summary
                     </p>
-                    <p id="step-summary-description" class="screen-reader-only">
+                    <p
+                        id="step-summary-description"
+                        class="screen-reader-only"
+                    >
                         Not started
                     </p>
                 </li>
@@ -61,8 +118,14 @@
         </aside>
 
         <main class="card">
-            <form id="signup-form" class="form">
-                <fieldset id="fieldset-step-your-info" class="formStep flow-150">
+            <form
+                id="signup-form"
+                class="form"
+            >
+                <fieldset
+                    id="fieldset-step-your-info"
+                    class="formStep flow-150"
+                >
                     <div class="formStep__header">
                         <legend class="text-bold text-large">
                             Personal info
@@ -76,38 +139,79 @@
                     <div class="formStep__main flow-150">
                         <div class="textField">
                             <label for="inputName">Name</label>
-                            <input type="text" name="personalInfoName" id="inputName" placeholder="e.g. Stephen King"
-                                autocomplete="name" aria-invalid="false" aria-describedby="inputNameErr" required />
-                            <span id="inputNameErr" aria-live="assertive"
-                                class="text-bold text-small text-danger"></span>
+                            <input
+                                type="text"
+                                name="personalInfoName"
+                                id="inputName"
+                                placeholder="e.g. Stephen King"
+                                autocomplete="name"
+                                aria-invalid="false"
+                                aria-describedby="inputNameErr"
+                                required
+                            />
+                            <span
+                                id="inputNameErr"
+                                aria-live="assertive"
+                                class="text-bold text-small text-danger"
+                            ></span>
                         </div>
 
                         <div class="textField">
                             <label for="inputEmail">Email address</label>
-                            <input type="email" name="personalInfoEmail" id="inputEmail"
-                                placeholder="e.g. stephenKing42@hotmail.com" autocomplete="email" aria-invalid="false"
-                                aria-describedby="inputEmailErr" required />
-                            <span id="inputEmailErr" aria-live="assertive"
-                                class="text-bold text-small text-danger"></span>
+                            <input
+                                type="email"
+                                name="personalInfoEmail"
+                                id="inputEmail"
+                                placeholder="e.g. stephenKing42@hotmail.com"
+                                autocomplete="email"
+                                aria-invalid="false"
+                                aria-describedby="inputEmailErr"
+                                required
+                            />
+                            <span
+                                id="inputEmailErr"
+                                aria-live="assertive"
+                                class="text-bold text-small text-danger"
+                            ></span>
                         </div>
 
                         <div class="textField">
                             <label for="inputTel">Phone number</label>
-                            <input type="tel" name="personalInfoTel" id="inputTel" placeholder="e.g. +1 234 567 890"
-                                autocomplete="tel" aria-invalid="false" aria-describedby="inputTelErr" required />
-                            <span id="inputTelErr" aria-live="assertive"
-                                class="text-bold text-small text-danger"></span>
+                            <input
+                                type="tel"
+                                name="personalInfoTel"
+                                id="inputTel"
+                                placeholder="e.g. +1 234 567 890"
+                                autocomplete="tel"
+                                aria-invalid="false"
+                                aria-describedby="inputTelErr"
+                                required
+                            />
+                            <span
+                                id="inputTelErr"
+                                aria-live="assertive"
+                                class="text-bold text-small text-danger"
+                            ></span>
                         </div>
                     </div>
 
                     <div class="formStep__footer formStep__footer--flexEnd">
-                        <button id="button-next-your-info" type="button" class="button-primary" disabled>
+                        <button
+                            id="button-next-your-info"
+                            type="button"
+                            class="button-primary"
+                            disabled
+                        >
                             Next step
                         </button>
                     </div>
                 </fieldset>
 
-                <fieldset id="fieldset-step-select-plan" class="formStep flow-150" hidden>
+                <fieldset
+                    id="fieldset-step-select-plan"
+                    class="formStep flow-150"
+                    hidden
+                >
                     <div class="formStep__header">
                         <legend class="text-bold text-large">
                             Select your plan
@@ -126,16 +230,34 @@
 
                             <div class="billingOptionGroup">
                                 <div class="billingOptionField">
-                                    <input type="radio" name="billingFreq" id="radioBillingFreqMonthly" value="monthly"
-                                        required checked class="billingOptionField__radio" />
-                                    <label for="radioBillingFreqMonthly"
-                                        class="billingOptionField__label">Monthly</label>
+                                    <input
+                                        type="radio"
+                                        name="billingFreq"
+                                        id="radioBillingFreqMonthly"
+                                        value="monthly"
+                                        required
+                                        checked
+                                        class="billingOptionField__radio"
+                                    />
+                                    <label
+                                        for="radioBillingFreqMonthly"
+                                        class="billingOptionField__label"
+                                    >Monthly</label>
                                 </div>
 
                                 <div class="billingOptionField">
-                                    <input type="radio" name="billingFreq" id="radioBillingFreqYearly" value="yearly"
-                                        required class="billingOptionField__radio" />
-                                    <label for="radioBillingFreqYearly" class="billingOptionField__label">Yearly</label>
+                                    <input
+                                        type="radio"
+                                        name="billingFreq"
+                                        id="radioBillingFreqYearly"
+                                        value="yearly"
+                                        required
+                                        class="billingOptionField__radio"
+                                    />
+                                    <label
+                                        for="radioBillingFreqYearly"
+                                        class="billingOptionField__label"
+                                    >Yearly</label>
                                 </div>
                             </div>
                         </fieldset>
@@ -147,60 +269,110 @@
 
                             <div class="subscriptionOptionGroup">
                                 <div class="subscriptionOptionField">
-                                    <input type="radio" name="subLevel" id="radioSubLevelArcade" value="arcade"
-                                        aria-describedby="radioSubLevelArcadePrice radioSubLevelArcadeBonus" required
-                                        checked class="subscriptionOptionField__radio" />
+                                    <input
+                                        type="radio"
+                                        name="subLevel"
+                                        id="radioSubLevelArcade"
+                                        value="arcade"
+                                        aria-describedby="radioSubLevelArcadePrice radioSubLevelArcadeBonus"
+                                        required
+                                        checked
+                                        class="subscriptionOptionField__radio"
+                                    />
 
                                     <div class="subscriptionOptionField__desc">
-                                        <label for="radioSubLevelArcade"
-                                            class="subscriptionOptionField__label">Arcade</label>
+                                        <label
+                                            for="radioSubLevelArcade"
+                                            class="subscriptionOptionField__label"
+                                        >Arcade</label>
                                         <!-- $9/mo | $90/yr + 2 months free -->
-                                        <p id="radioSubLevelArcadePrice" class="text-muted text-bold text-small"
-                                            data-selector="subscriptionPrice" data-price-monthly="$9/mo"
-                                            data-price-yearly="$90/yr">
+                                        <p
+                                            id="radioSubLevelArcadePrice"
+                                            class="text-muted text-bold text-small"
+                                            data-selector="subscriptionPrice"
+                                            data-price-monthly="$9/mo"
+                                            data-price-yearly="$90/yr"
+                                        >
                                             $9/mo
                                         </p>
-                                        <p id="radioSubLevelArcadeBonus" class="text-muted text-bold text-small"
-                                            data-selector="subscriptionBonus" hidden>
+                                        <p
+                                            id="radioSubLevelArcadeBonus"
+                                            class="text-muted text-bold text-small"
+                                            data-selector="subscriptionBonus"
+                                            hidden
+                                        >
                                             +2 months
                                         </p>
                                     </div>
                                 </div>
 
                                 <div class="subscriptionOptionField">
-                                    <input type="radio" name="subLevel" id="radioSubLevelAdvanced" value="advanced"
+                                    <input
+                                        type="radio"
+                                        name="subLevel"
+                                        id="radioSubLevelAdvanced"
+                                        value="advanced"
                                         aria-describedby="radioSubLevelAdvancedPrice radioSubLevelAdvancedBonus"
-                                        required class="subscriptionOptionField__radio" />
+                                        required
+                                        class="subscriptionOptionField__radio"
+                                    />
                                     <div class="subscriptionOptionField__desc">
-                                        <label for="radioSubLevelAdvanced"
-                                            class="subscriptionOptionField__label">Advanced</label>
+                                        <label
+                                            for="radioSubLevelAdvanced"
+                                            class="subscriptionOptionField__label"
+                                        >Advanced</label>
                                         <!-- $12/mo | $120/yr + 3 months free -->
-                                        <p id="radioSubLevelAdvancedPrice" class="text-muted text-bold text-small"
-                                            data-selector="subscriptionPrice" data-price-monthly="$12/mo"
-                                            data-price-yearly="$120/yr">
+                                        <p
+                                            id="radioSubLevelAdvancedPrice"
+                                            class="text-muted text-bold text-small"
+                                            data-selector="subscriptionPrice"
+                                            data-price-monthly="$12/mo"
+                                            data-price-yearly="$120/yr"
+                                        >
                                             $12/mo
                                         </p>
-                                        <p id="radioSubLevelAdvancedBonus" class="text-muted text-bold text-small"
-                                            data-selector="subscriptionBonus" hidden>
+                                        <p
+                                            id="radioSubLevelAdvancedBonus"
+                                            class="text-muted text-bold text-small"
+                                            data-selector="subscriptionBonus"
+                                            hidden
+                                        >
                                             +3 months
                                         </p>
                                     </div>
                                 </div>
 
                                 <div class="subscriptionOptionField">
-                                    <input type="radio" name="subLevel" id="radioSubLevelPro" value="pro"
-                                        aria-describedby="radioSubLevelProPrice radioSubLevelProBonus" required
-                                        class="subscriptionOptionField__radio" />
+                                    <input
+                                        type="radio"
+                                        name="subLevel"
+                                        id="radioSubLevelPro"
+                                        value="pro"
+                                        aria-describedby="radioSubLevelProPrice radioSubLevelProBonus"
+                                        required
+                                        class="subscriptionOptionField__radio"
+                                    />
                                     <div class="subscriptionOptionField__desc">
-                                        <label for="radioSubLevelPro" class="subscriptionOptionField__label">Pro</label>
+                                        <label
+                                            for="radioSubLevelPro"
+                                            class="subscriptionOptionField__label"
+                                        >Pro</label>
                                         <!-- $15/mo | $150/yr + 4 months free -->
-                                        <p id="radioSubLevelProPrice" class="text-muted text-bold text-small"
-                                            data-selector="subscriptionPrice" data-price-monthly="$15/mo"
-                                            data-price-yearly="$150/yr">
+                                        <p
+                                            id="radioSubLevelProPrice"
+                                            class="text-muted text-bold text-small"
+                                            data-selector="subscriptionPrice"
+                                            data-price-monthly="$15/mo"
+                                            data-price-yearly="$150/yr"
+                                        >
                                             $15/mo
                                         </p>
-                                        <p id="radioSubLevelProBonus" class="text-muted text-bold text-small"
-                                            data-selector="subscriptionBonus" hidden>
+                                        <p
+                                            id="radioSubLevelProBonus"
+                                            class="text-muted text-bold text-small"
+                                            data-selector="subscriptionBonus"
+                                            hidden
+                                        >
                                             +4 months
                                         </p>
                                     </div>
@@ -210,16 +382,27 @@
                     </div>
 
                     <div class="formStep__footer">
-                        <button id="button-back-select-plan" type="button">
+                        <button
+                            id="button-back-select-plan"
+                            type="button"
+                        >
                             Go back
                         </button>
-                        <button id="button-next-select-plan" type="button" class="button-primary">
+                        <button
+                            id="button-next-select-plan"
+                            type="button"
+                            class="button-primary"
+                        >
                             Next step
                         </button>
                     </div>
                 </fieldset>
 
-                <fieldset id="fieldset-step-add-ons" class="formStep flow-150" hidden>
+                <fieldset
+                    id="fieldset-step-add-ons"
+                    class="formStep flow-150"
+                    hidden
+                >
                     <div class="formStep__header">
                         <legend class="text-bold text-large">
                             Pick add-ons
@@ -231,61 +414,104 @@
 
                     <ul class="addOnOptionGroup">
                         <li class="addOnOptionField">
-                            <input type="checkbox" name="addOns" id="checkboxAddOnsOnlineService" value="online-service"
+                            <input
+                                type="checkbox"
+                                name="addOns"
+                                id="checkboxAddOnsOnlineService"
+                                value="online-service"
                                 aria-describedby="checkboxAddOnsOnlineServiceDesc checkboxAddOnsOnlineServicePrice"
-                                class="addOnOptionField__checkbox" />
+                                class="addOnOptionField__checkbox"
+                            />
 
                             <div class="addOnOptionDescription">
-                                <label for="checkboxAddOnsOnlineService" class="addOnOptionDescription__label">Online
+                                <label
+                                    for="checkboxAddOnsOnlineService"
+                                    class="addOnOptionDescription__label"
+                                >Online
                                     service</label>
                                 <!-- $1/mo | $10/yr -->
-                                <p id="checkboxAddOnsOnlineServicePrice"
+                                <p
+                                    id="checkboxAddOnsOnlineServicePrice"
                                     class="text-bold text-muted text-small addOnOptionDescription__price"
-                                    data-selector="addOnPrice" data-price-monthly="$1/mo" data-price-yearly="$10/yr">
+                                    data-selector="addOnPrice"
+                                    data-price-monthly="$1/mo"
+                                    data-price-yearly="$10/yr"
+                                >
                                     $1/mo
                                 </p>
-                                <p id="checkboxAddOnsOnlineServiceDesc" class="text-bold text-muted text-small">
+                                <p
+                                    id="checkboxAddOnsOnlineServiceDesc"
+                                    class="text-bold text-muted text-small"
+                                >
                                     Access to multiplayer games
                                 </p>
                             </div>
                         </li>
 
                         <li class="addOnOptionField">
-                            <input type="checkbox" name="addOns" id="checkboxAddOnsLargerStorage" value="larger-storage"
+                            <input
+                                type="checkbox"
+                                name="addOns"
+                                id="checkboxAddOnsLargerStorage"
+                                value="larger-storage"
                                 aria-describedby="checkboxAddOnsLargerStorageDesc checkboxAddOnsLargerStoragePrice"
-                                class="addOnOptionField__checkbox" />
+                                class="addOnOptionField__checkbox"
+                            />
 
                             <div class="addOnOptionDescription">
-                                <label for="checkboxAddOnsLargerStorage" class="addOnOptionDescription__label">Larger
+                                <label
+                                    for="checkboxAddOnsLargerStorage"
+                                    class="addOnOptionDescription__label"
+                                >Larger
                                     storage</label>
                                 <!-- $2/mo | $20/yr -->
-                                <p id="checkboxAddOnsLargerStoragePrice"
+                                <p
+                                    id="checkboxAddOnsLargerStoragePrice"
                                     class="text-bold text-muted text-small addOnOptionDescription__price"
-                                    data-selector="addOnPrice" data-price-monthly="$2/mo" data-price-yearly="$20/yr">
+                                    data-selector="addOnPrice"
+                                    data-price-monthly="$2/mo"
+                                    data-price-yearly="$20/yr"
+                                >
                                     $2/mo
                                 </p>
-                                <p id="checkboxAddOnsLargerStorageDesc" class="text-bold text-muted text-small">
+                                <p
+                                    id="checkboxAddOnsLargerStorageDesc"
+                                    class="text-bold text-muted text-small"
+                                >
                                     Extra 1TB of cloud save
                                 </p>
                             </div>
                         </li>
 
                         <li class="addOnOptionField">
-                            <input type="checkbox" name="addOns" id="checkboxAddOnsCustomProfile"
+                            <input
+                                type="checkbox"
+                                name="addOns"
+                                id="checkboxAddOnsCustomProfile"
                                 value="customizable-profile"
                                 aria-describedby="checkboxAddOnsCustomProfileDesc checkboxAddOnsCustomProfilePrice"
-                                class="addOnOptionField__checkbox" />
+                                class="addOnOptionField__checkbox"
+                            />
 
                             <div class="addOnOptionDescription">
-                                <label for="checkboxAddOnsCustomProfile"
-                                    class="addOnOptionDescription__label">Customizable profile</label>
+                                <label
+                                    for="checkboxAddOnsCustomProfile"
+                                    class="addOnOptionDescription__label"
+                                >Customizable profile</label>
                                 <!-- $2/mo | $20/yr -->
-                                <p id="checkboxAddOnsCustomProfilePrice"
+                                <p
+                                    id="checkboxAddOnsCustomProfilePrice"
                                     class="text-bold text-muted text-small addOnOptionDescription__price"
-                                    data-selector="addOnPrice" data-price-monthly="$2/mo" data-price-yearly="$20/yr">
+                                    data-selector="addOnPrice"
+                                    data-price-monthly="$2/mo"
+                                    data-price-yearly="$20/yr"
+                                >
                                     $2/mo
                                 </p>
-                                <p id="checkboxAddOnsCustomProfileDesc" class="text-bold text-muted text-small">
+                                <p
+                                    id="checkboxAddOnsCustomProfileDesc"
+                                    class="text-bold text-muted text-small"
+                                >
                                     Custom theme on your profile
                                 </p>
                             </div>
@@ -293,16 +519,27 @@
                     </ul>
 
                     <div class="formStep__footer">
-                        <button id="button-back-add-ons" type="button">
+                        <button
+                            id="button-back-add-ons"
+                            type="button"
+                        >
                             Go back
                         </button>
-                        <button id="button-next-add-ons" type="button" class="button-primary">
+                        <button
+                            id="button-next-add-ons"
+                            type="button"
+                            class="button-primary"
+                        >
                             Next step
                         </button>
                     </div>
                 </fieldset>
 
-                <section id="section-step-summary" class="formStep flow-150" hidden>
+                <section
+                    id="section-step-summary"
+                    class="formStep flow-150"
+                    hidden
+                >
                     <div class="formStep__header">
                         <h2 class="text-bold text-large">Finishing up</h2>
                         <p class="text-muted">
@@ -312,24 +549,44 @@
                     </div>
 
                     <div class="formStep__main formStep__main--highlight flow-150">
-                        <section aria-label="Subscription" class="subscriptionSummary">
+                        <section
+                            aria-label="Subscription"
+                            class="subscriptionSummary"
+                        >
                             <p class="subscriptionSummary__description">
                                 <span id="summarySubscriptionPlan">Arcade (Monthly)</span>
-                                <span id="summarySubscriptionPrice" class="text-bold">$9/mo</span>
+                                <span
+                                    id="summarySubscriptionPrice"
+                                    class="text-bold"
+                                >$9/mo</span>
                             </p>
 
-                            <button id="button-change-subscription-summary" type="button"
-                                class="subscriptionSummary__button">
+                            <button
+                                id="button-change-subscription-summary"
+                                type="button"
+                                class="subscriptionSummary__button"
+                            >
                                 Change subscription
                             </button>
                         </section>
 
-                        <ul id="addOnsSummary" aria-label="Add-ons" class="addOnsSummary" hidden>
+                        <ul
+                            id="addOnsSummary"
+                            aria-label="Add-ons"
+                            class="addOnsSummary"
+                            hidden
+                        >
                             <template id="addOnsSummaryDescription">
                                 <li class="addOnsSummary__description">
-                                    <span class="text-muted" data-selector="summaryAddOnName">Customizable
+                                    <span
+                                        class="text-muted"
+                                        data-selector="summaryAddOnName"
+                                    >Customizable
                                         profile</span>
-                                    <span class="text-bold text-muted" data-selector="summaryAddOnPrice">+$2/mo</span>
+                                    <span
+                                        class="text-bold text-muted"
+                                        data-selector="summaryAddOnPrice"
+                                    >+$2/mo</span>
                                 </li>
                             </template>
                         </ul>
@@ -338,15 +595,24 @@
 
                         <p class="totalSummary">
                             <span id="totalSummaryBillingFreq">Total (Monthly)</span>
-                            <span id="totalSummaryPrice" class="text-bold">$13/mo</span>
+                            <span
+                                id="totalSummaryPrice"
+                                class="text-bold"
+                            >$13/mo</span>
                         </p>
                     </div>
 
                     <div class="formStep__footer">
-                        <button id="button-back-summary" type="button">
+                        <button
+                            id="button-back-summary"
+                            type="button"
+                        >
                             Go back
                         </button>
-                        <button type="submit" class="button-primary">
+                        <button
+                            type="submit"
+                            class="button-primary"
+                        >
                             Confirm
                         </button>
                     </div>
