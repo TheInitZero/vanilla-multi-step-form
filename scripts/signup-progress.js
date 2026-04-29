@@ -1,4 +1,4 @@
-export function ProgressStep(node) {
+export function SignupProgressStep(node) {
     let description = node.querySelector(`#${node.id}-description`);
 
     let statusDescriptions = {

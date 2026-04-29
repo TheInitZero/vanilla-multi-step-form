@@ -1,4 +1,4 @@
-import { ProgressStep, SignupProgressActor } from "./signup-progress.js";
+import { SignupProgressStep, SignupProgressActor } from "./signup-progress.js";
 import {
     InputField,
     validateEmail,
@@ -58,7 +58,7 @@ let buttonChangeSubscriptionSummary = document.getElementById(
 );
 let buttonBackSummary = document.getElementById("button-back-summary");
 
-let componentsSignupProgressStep = Array.from(document.querySelectorAll("[data-component='SignupProgressStep']")).map(ProgressStep);
+let componentsSignupProgressStep = Array.from(document.querySelectorAll("[data-component='SignupProgressStep']")).map(SignupProgressStep);
 
 let signupProgressActor = SignupProgressActor();
 
