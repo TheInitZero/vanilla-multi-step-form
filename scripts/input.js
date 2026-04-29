@@ -1,14 +1,32 @@
-export function InputField(inputNode, errNode) {
-    return { markAsValid, markAsInvalid };
+export class InputField {
+    constructor(node, validate) {
+        this.nodeInput = node.querySelector("[data-component='InputField_input']");
+        this.nodeError = node.querySelector("[data-component='InputField_error']");
 
-    function markAsValid() {
-        inputNode.ariaInvalid = false;
-        errNode.innerText = "";
+        this.nodeInput.addEventListener("input", function () {
+            let customEvent = new CustomEvent("YOUR_INFO.UPDATE");
+            document.dispatchEvent(customEvent);
+        });
+
+        this.nodeInput.addEventListener("change", () => {
+            let [isValid, errMsg] = validate(this.nodeInput.value);
+
+            if (isValid) {
+                this.markAsValid();
+            } else {
+                this.markAsInvalid(errMsg);
+            }
+        });
     }
 
-    function markAsInvalid(reason) {
-        inputNode.ariaInvalid = true;
-        errNode.innerText = reason;
+    markAsValid() {
+        this.nodeInput.ariaInvalid = false;
+        this.nodeError.innerText = "";
+    }
+
+    markAsInvalid(reason) {
+        this.nodeInput.ariaInvalid = true;
+        this.nodeError.innerText = reason;
     }
 }
 

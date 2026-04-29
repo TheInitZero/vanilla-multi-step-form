@@ -10,22 +10,25 @@ import { data } from "./data.js";
 let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
 
 let nodeStepYourInfo = nodeSignupForm.querySelector("[data-component='StepYourInfo']");
+new InputField(
+    nodeStepYourInfo.querySelector("[data-component='InputField'][data-for='name']"),
+    validateName
+);
+new InputField(
+    nodeStepYourInfo.querySelector("[data-component='InputField'][data-for='email']"),
+    validateEmail
+);
+new InputField(
+    nodeStepYourInfo.querySelector("[data-component='InputField'][data-for='tel']"),
+    validateTel
+);
+
 let fieldsetStepSelectPlan = document.getElementById(
     "fieldset-step-select-plan",
 );
 let fieldsetStepAddOns = document.getElementById("fieldset-step-add-ons");
 let sectionStepSummary = document.getElementById("section-step-summary");
 
-let inputName = nodeStepYourInfo.querySelector("#inputName");
-let inputNameErr = nodeStepYourInfo.querySelector("#inputNameErr");
-let inputEmail = nodeStepYourInfo.querySelector("#inputEmail");
-let inputEmailErr = nodeStepYourInfo.querySelector("#inputEmailErr");
-let inputTel = nodeStepYourInfo.querySelector("#inputTel");
-let inputTelErr = nodeStepYourInfo.querySelector("#inputTelErr");
-
-let inputFieldName = InputField(inputName, inputNameErr);
-let inputFieldEmail = InputField(inputEmail, inputEmailErr);
-let inputFieldTel = InputField(inputTel, inputTelErr);
 
 let radioBillingFreqMonthly = document.getElementById(
     "radioBillingFreqMonthly",
@@ -203,51 +206,6 @@ document.addEventListener("BILLING_FREQ.CHANGE", function (event) {
             billingFreq == "monthly"
                 ? node.dataset.priceMonthly
                 : node.dataset.priceYearly;
-    }
-});
-
-inputName.addEventListener("input", function () {
-    let customEvent = new CustomEvent("YOUR_INFO.UPDATE");
-    document.dispatchEvent(customEvent);
-});
-
-inputName.addEventListener("change", function () {
-    let [isValid, errMsg] = validateName(inputName.value);
-
-    if (isValid) {
-        inputFieldName.markAsValid();
-    } else {
-        inputFieldName.markAsInvalid(errMsg);
-    }
-});
-
-inputEmail.addEventListener("input", function () {
-    let customEvent = new CustomEvent("YOUR_INFO.UPDATE");
-    document.dispatchEvent(customEvent);
-});
-
-inputEmail.addEventListener("change", function () {
-    let [isValid, errMsg] = validateEmail(inputEmail.value);
-
-    if (isValid) {
-        inputFieldEmail.markAsValid();
-    } else {
-        inputFieldEmail.markAsInvalid(errMsg);
-    }
-});
-
-inputTel.addEventListener("input", function () {
-    let customEvent = new CustomEvent("YOUR_INFO.UPDATE");
-    document.dispatchEvent(customEvent);
-});
-
-inputTel.addEventListener("change", function () {
-    let [isValid, errMsg] = validateTel(inputTel.value);
-
-    if (isValid) {
-        inputFieldTel.markAsValid();
-    } else {
-        inputFieldTel.markAsInvalid(errMsg);
     }
 });
 
