@@ -4,7 +4,7 @@ import {
     validateEmail,
     validateName,
     validateTel,
-} from "./input-field.js";
+} from "./components/input-field.js";
 import { data } from "./data.js";
 
 let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
