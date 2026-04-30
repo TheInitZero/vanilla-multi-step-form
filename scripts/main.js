@@ -30,7 +30,7 @@ let nodeBillingOptionInputMonthly = nodeStepSelectPlan.querySelector(
 let nodeBillingOptionInputYearly = nodeStepSelectPlan.querySelector(
     "[data-component='BillingOption_input'][value='yearly']"
 );
-let subscriptionPrices = document.querySelectorAll("[data-component='SubscriptionOption_price']");
+let nodesSubscriptionOptionPrice = document.querySelectorAll("[data-component='SubscriptionOption_price']");
 let subscriptionBonuses = document.querySelectorAll("[data-selector='subscriptionBonus']");
 
 let fieldsetStepAddOns = document.getElementById("fieldset-step-add-ons");
@@ -177,7 +177,7 @@ document.addEventListener("YOUR_INFO.UPDATE", function () {
 document.addEventListener("BILLING_FREQ.CHANGE", function (event) {
     let billingFreq = event.detail;
 
-    for (let node of subscriptionPrices) {
+    for (let node of nodesSubscriptionOptionPrice) {
         node.innerText =
             billingFreq == "monthly"
                 ? node.dataset.priceMonthly
