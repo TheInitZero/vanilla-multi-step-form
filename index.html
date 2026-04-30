@@ -241,6 +241,7 @@
                 <fieldset
                     id="fieldset-step-select-plan"
                     class="formStep flow-150"
+                    data-component="StepSelectPlan"
                     hidden
                 >
                     <div class="formStep__header">
@@ -260,15 +261,19 @@
                             </legend>
 
                             <div class="billingOptionGroup">
-                                <div class="billingOptionField">
+                                <div
+                                    class="billingOptionField"
+                                    data-component="BillingOption"
+                                >
                                     <input
+                                        id="radioBillingFreqMonthly"
+                                        class="billingOptionField__radio"
                                         type="radio"
                                         name="billingFreq"
-                                        id="radioBillingFreqMonthly"
                                         value="monthly"
                                         required
                                         checked
-                                        class="billingOptionField__radio"
+                                        data-component="BillingOption_input"
                                     />
                                     <label
                                         for="radioBillingFreqMonthly"
@@ -276,14 +281,18 @@
                                     >Monthly</label>
                                 </div>
 
-                                <div class="billingOptionField">
+                                <div
+                                    class="billingOptionField"
+                                    data-component="BillingOption"
+                                >
                                     <input
+                                        id="radioBillingFreqYearly"
+                                        class="billingOptionField__radio"
                                         type="radio"
                                         name="billingFreq"
-                                        id="radioBillingFreqYearly"
                                         value="yearly"
                                         required
-                                        class="billingOptionField__radio"
+                                        data-component="BillingOption_input"
                                     />
                                     <label
                                         for="radioBillingFreqYearly"
@@ -299,7 +308,10 @@
                             </legend>
 
                             <div class="subscriptionOptionGroup">
-                                <div class="subscriptionOptionField">
+                                <div
+                                    class="subscriptionOptionField"
+                                    data-component="SubscriptionOption"
+                                >
                                     <input
                                         type="radio"
                                         name="subLevel"
@@ -320,7 +332,7 @@
                                         <p
                                             id="radioSubLevelArcadePrice"
                                             class="text-muted text-bold text-small"
-                                            data-selector="subscriptionPrice"
+                                            data-component="SubscriptionOption_price"
                                             data-price-monthly="$9/mo"
                                             data-price-yearly="$90/yr"
                                         >
@@ -329,7 +341,7 @@
                                         <p
                                             id="radioSubLevelArcadeBonus"
                                             class="text-muted text-bold text-small"
-                                            data-selector="subscriptionBonus"
+                                            data-component="SubscriptionOption_bonus"
                                             hidden
                                         >
                                             +2 months
@@ -337,7 +349,10 @@
                                     </div>
                                 </div>
 
-                                <div class="subscriptionOptionField">
+                                <div
+                                    class="subscriptionOptionField"
+                                    data-component="SubscriptionOption"
+                                >
                                     <input
                                         type="radio"
                                         name="subLevel"
@@ -356,7 +371,7 @@
                                         <p
                                             id="radioSubLevelAdvancedPrice"
                                             class="text-muted text-bold text-small"
-                                            data-selector="subscriptionPrice"
+                                            data-component="SubscriptionOption_price"
                                             data-price-monthly="$12/mo"
                                             data-price-yearly="$120/yr"
                                         >
@@ -365,7 +380,7 @@
                                         <p
                                             id="radioSubLevelAdvancedBonus"
                                             class="text-muted text-bold text-small"
-                                            data-selector="subscriptionBonus"
+                                            data-component="SubscriptionOption_bonus"
                                             hidden
                                         >
                                             +3 months
@@ -373,7 +388,10 @@
                                     </div>
                                 </div>
 
-                                <div class="subscriptionOptionField">
+                                <div
+                                    class="subscriptionOptionField"
+                                    data-component="SubscriptionOption"
+                                >
                                     <input
                                         type="radio"
                                         name="subLevel"
@@ -392,7 +410,7 @@
                                         <p
                                             id="radioSubLevelProPrice"
                                             class="text-muted text-bold text-small"
-                                            data-selector="subscriptionPrice"
+                                            data-component="SubscriptionOption_price"
                                             data-price-monthly="$15/mo"
                                             data-price-yearly="$150/yr"
                                         >
@@ -401,7 +419,7 @@
                                         <p
                                             id="radioSubLevelProBonus"
                                             class="text-muted text-bold text-small"
-                                            data-selector="subscriptionBonus"
+                                            data-component="SubscriptionOption_bonus"
                                             hidden
                                         >
                                             +4 months

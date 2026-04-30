@@ -23,24 +23,22 @@ let componentInputFieldTel = new InputField(
     validateTel
 );
 
-let fieldsetStepSelectPlan = document.getElementById(
-    "fieldset-step-select-plan",
+let nodeStepSelectPlan = nodeSignupForm.querySelector("[data-component='StepSelectPlan']");
+let nodeBillingOptionInputMonthly = nodeStepSelectPlan.querySelector(
+    "[data-component='BillingOption_input'][value='monthly']"
 );
+let nodeBillingOptionInputYearly = nodeStepSelectPlan.querySelector(
+    "[data-component='BillingOption_input'][value='yearly']"
+);
+let nodesSubscriptionOptionPrice = nodeStepSelectPlan.querySelectorAll(
+    "[data-component='SubscriptionOption_price']"
+);
+let nodesSubscriptionOptionBonus = nodeStepSelectPlan.querySelectorAll(
+    "[data-component='SubscriptionOption_bonus']"
+);
+
 let fieldsetStepAddOns = document.getElementById("fieldset-step-add-ons");
 let sectionStepSummary = document.getElementById("section-step-summary");
-
-
-let radioBillingFreqMonthly = document.getElementById(
-    "radioBillingFreqMonthly",
-);
-let radioBillingFreqYearly = document.getElementById("radioBillingFreqYearly");
-
-let subscriptionPrices = document.querySelectorAll(
-    "[data-selector='subscriptionPrice']",
-);
-let subscriptionBonuses = document.querySelectorAll(
-    "[data-selector='subscriptionBonus']",
-);
 
 let addOnPrices = document.querySelectorAll("[data-selector='addOnPrice']");
 
@@ -79,7 +77,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
     if (model.currentStep == "your-info") {
         nodeStepYourInfo.hidden = false;
-        fieldsetStepSelectPlan.hidden = true;
+        nodeStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = true;
         sectionStepSummary.hidden = true;
         return;
@@ -87,7 +85,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
     if (model.currentStep == "select-plan") {
         nodeStepYourInfo.hidden = true;
-        fieldsetStepSelectPlan.hidden = false;
+        nodeStepSelectPlan.hidden = false;
         fieldsetStepAddOns.hidden = true;
         sectionStepSummary.hidden = true;
         return;
@@ -95,7 +93,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
     if (model.currentStep == "add-ons") {
         nodeStepYourInfo.hidden = true;
-        fieldsetStepSelectPlan.hidden = true;
+        nodeStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = false;
         sectionStepSummary.hidden = true;
         return;
@@ -103,7 +101,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
     if (model.currentStep == "summary") {
         nodeStepYourInfo.hidden = true;
-        fieldsetStepSelectPlan.hidden = true;
+        nodeStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = true;
         sectionStepSummary.hidden = false;
         return;
@@ -183,14 +181,14 @@ document.addEventListener("YOUR_INFO.UPDATE", function () {
 document.addEventListener("BILLING_FREQ.CHANGE", function (event) {
     let billingFreq = event.detail;
 
-    for (let node of subscriptionPrices) {
+    for (let node of nodesSubscriptionOptionPrice) {
         node.innerText =
             billingFreq == "monthly"
                 ? node.dataset.priceMonthly
                 : node.dataset.priceYearly;
     }
 
-    for (let node of subscriptionBonuses) {
+    for (let node of nodesSubscriptionOptionBonus) {
         node.hidden = billingFreq == "monthly";
     }
 
@@ -202,16 +200,16 @@ document.addEventListener("BILLING_FREQ.CHANGE", function (event) {
     }
 });
 
-radioBillingFreqMonthly.addEventListener("change", function () {
+nodeBillingOptionInputMonthly.addEventListener("change", function () {
     let customEvent = new CustomEvent("BILLING_FREQ.CHANGE", {
-        detail: radioBillingFreqMonthly.value,
+        detail: nodeBillingOptionInputMonthly.value,
     });
     document.dispatchEvent(customEvent);
 });
 
-radioBillingFreqYearly.addEventListener("change", function () {
+nodeBillingOptionInputYearly.addEventListener("change", function () {
     let customEvent = new CustomEvent("BILLING_FREQ.CHANGE", {
-        detail: radioBillingFreqYearly.value,
+        detail: nodeBillingOptionInputYearly.value,
     });
     document.dispatchEvent(customEvent);
 });
