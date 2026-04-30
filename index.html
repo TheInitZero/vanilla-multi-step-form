@@ -261,15 +261,19 @@
                             </legend>
 
                             <div class="billingOptionGroup">
-                                <div class="billingOptionField">
+                                <div
+                                    class="billingOptionField"
+                                    data-component="BillingOption"
+                                >
                                     <input
+                                        id="radioBillingFreqMonthly"
+                                        class="billingOptionField__radio"
                                         type="radio"
                                         name="billingFreq"
-                                        id="radioBillingFreqMonthly"
                                         value="monthly"
                                         required
                                         checked
-                                        class="billingOptionField__radio"
+                                        data-component="BillingOption_input"
                                     />
                                     <label
                                         for="radioBillingFreqMonthly"
@@ -277,14 +281,18 @@
                                     >Monthly</label>
                                 </div>
 
-                                <div class="billingOptionField">
+                                <div
+                                    class="billingOptionField"
+                                    data-component="BillingOption"
+                                >
                                     <input
+                                        id="radioBillingFreqYearly"
+                                        class="billingOptionField__radio"
                                         type="radio"
                                         name="billingFreq"
-                                        id="radioBillingFreqYearly"
                                         value="yearly"
                                         required
-                                        class="billingOptionField__radio"
+                                        data-component="BillingOption_input"
                                     />
                                     <label
                                         for="radioBillingFreqYearly"
