@@ -24,10 +24,10 @@ let componentInputFieldTel = new InputField(
 );
 
 let nodeStepSelectPlan = document.querySelector("[data-component='StepSelectPlan']");
-let radioBillingFreqMonthly = nodeStepSelectPlan.querySelector(
+let nodeBillingOptionInputMonthly = nodeStepSelectPlan.querySelector(
     "[data-component='BillingOption_input'][value='monthly']"
 );
-let radioBillingFreqYearly = nodeStepSelectPlan.querySelector(
+let nodeBillingOptionInputYearly = nodeStepSelectPlan.querySelector(
     "[data-component='BillingOption_input'][value='yearly']"
 );
 let subscriptionPrices = document.querySelectorAll("[data-selector='subscriptionPrice']");
@@ -196,16 +196,16 @@ document.addEventListener("BILLING_FREQ.CHANGE", function (event) {
     }
 });
 
-radioBillingFreqMonthly.addEventListener("change", function () {
+nodeBillingOptionInputMonthly.addEventListener("change", function () {
     let customEvent = new CustomEvent("BILLING_FREQ.CHANGE", {
-        detail: radioBillingFreqMonthly.value,
+        detail: nodeBillingOptionInputMonthly.value,
     });
     document.dispatchEvent(customEvent);
 });
 
-radioBillingFreqYearly.addEventListener("change", function () {
+nodeBillingOptionInputYearly.addEventListener("change", function () {
     let customEvent = new CustomEvent("BILLING_FREQ.CHANGE", {
-        detail: radioBillingFreqYearly.value,
+        detail: nodeBillingOptionInputYearly.value,
     });
     document.dispatchEvent(customEvent);
 });
