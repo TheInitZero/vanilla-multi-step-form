@@ -23,7 +23,7 @@ let componentInputFieldTel = new InputField(
     validateTel
 );
 
-let nodeStepSelectPlan = document.querySelector("[data-component='StepSelectPlan']");
+let nodeStepSelectPlan = nodeSignupForm.querySelector("[data-component='StepSelectPlan']");
 let nodeBillingOptionInputMonthly = nodeStepSelectPlan.querySelector(
     "[data-component='BillingOption_input'][value='monthly']"
 );
