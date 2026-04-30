@@ -24,8 +24,12 @@ let componentInputFieldTel = new InputField(
 );
 
 let nodeStepSelectPlan = document.querySelector("[data-component='StepSelectPlan']");
-let radioBillingFreqMonthly = document.getElementById("radioBillingFreqMonthly");
-let radioBillingFreqYearly = document.getElementById("radioBillingFreqYearly");
+let radioBillingFreqMonthly = nodeStepSelectPlan.querySelector(
+    "[data-component='BillingOption_input'][value='monthly']"
+);
+let radioBillingFreqYearly = nodeStepSelectPlan.querySelector(
+    "[data-component='BillingOption_input'][value='yearly']"
+);
 let subscriptionPrices = document.querySelectorAll("[data-selector='subscriptionPrice']");
 let subscriptionBonuses = document.querySelectorAll("[data-selector='subscriptionBonus']");
 
