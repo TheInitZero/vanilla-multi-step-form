@@ -31,7 +31,7 @@ let nodeBillingOptionInputYearly = nodeStepSelectPlan.querySelector(
     "[data-component='BillingOption_input'][value='yearly']"
 );
 let nodesSubscriptionOptionPrice = document.querySelectorAll("[data-component='SubscriptionOption_price']");
-let subscriptionBonuses = document.querySelectorAll("[data-selector='subscriptionBonus']");
+let subscriptionBonuses = document.querySelectorAll("[data-component='SubscriptionOption_bonus']");
 
 let fieldsetStepAddOns = document.getElementById("fieldset-step-add-ons");
 let sectionStepSummary = document.getElementById("section-step-summary");
