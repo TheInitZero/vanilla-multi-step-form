@@ -23,22 +23,14 @@ let componentInputFieldTel = new InputField(
     validateTel
 );
 
-let nodeStepSelectPlan = document.getElementById("fieldset-step-select-plan");
+let nodeStepSelectPlan = document.querySelector("[data-component='StepSelectPlan']");
+let radioBillingFreqMonthly = document.getElementById("radioBillingFreqMonthly");
+let radioBillingFreqYearly = document.getElementById("radioBillingFreqYearly");
+let subscriptionPrices = document.querySelectorAll("[data-selector='subscriptionPrice']");
+let subscriptionBonuses = document.querySelectorAll("[data-selector='subscriptionBonus']");
+
 let fieldsetStepAddOns = document.getElementById("fieldset-step-add-ons");
 let sectionStepSummary = document.getElementById("section-step-summary");
-
-
-let radioBillingFreqMonthly = document.getElementById(
-    "radioBillingFreqMonthly",
-);
-let radioBillingFreqYearly = document.getElementById("radioBillingFreqYearly");
-
-let subscriptionPrices = document.querySelectorAll(
-    "[data-selector='subscriptionPrice']",
-);
-let subscriptionBonuses = document.querySelectorAll(
-    "[data-selector='subscriptionBonus']",
-);
 
 let addOnPrices = document.querySelectorAll("[data-selector='addOnPrice']");
 
