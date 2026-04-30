@@ -30,7 +30,7 @@ let nodeBillingOptionInputMonthly = nodeStepSelectPlan.querySelector(
 let nodeBillingOptionInputYearly = nodeStepSelectPlan.querySelector(
     "[data-component='BillingOption_input'][value='yearly']"
 );
-let subscriptionPrices = document.querySelectorAll("[data-selector='subscriptionPrice']");
+let subscriptionPrices = document.querySelectorAll("[data-component='SubscriptionOption_price']");
 let subscriptionBonuses = document.querySelectorAll("[data-selector='subscriptionBonus']");
 
 let fieldsetStepAddOns = document.getElementById("fieldset-step-add-ons");
