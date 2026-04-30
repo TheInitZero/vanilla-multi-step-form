@@ -23,9 +23,7 @@ let componentInputFieldTel = new InputField(
     validateTel
 );
 
-let fieldsetStepSelectPlan = document.getElementById(
-    "fieldset-step-select-plan",
-);
+let nodeStepSelectPlan = document.getElementById("fieldset-step-select-plan");
 let fieldsetStepAddOns = document.getElementById("fieldset-step-add-ons");
 let sectionStepSummary = document.getElementById("section-step-summary");
 
@@ -79,7 +77,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
     if (model.currentStep == "your-info") {
         nodeStepYourInfo.hidden = false;
-        fieldsetStepSelectPlan.hidden = true;
+        nodeStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = true;
         sectionStepSummary.hidden = true;
         return;
@@ -87,7 +85,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
     if (model.currentStep == "select-plan") {
         nodeStepYourInfo.hidden = true;
-        fieldsetStepSelectPlan.hidden = false;
+        nodeStepSelectPlan.hidden = false;
         fieldsetStepAddOns.hidden = true;
         sectionStepSummary.hidden = true;
         return;
@@ -95,7 +93,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
     if (model.currentStep == "add-ons") {
         nodeStepYourInfo.hidden = true;
-        fieldsetStepSelectPlan.hidden = true;
+        nodeStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = false;
         sectionStepSummary.hidden = true;
         return;
@@ -103,7 +101,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
     if (model.currentStep == "summary") {
         nodeStepYourInfo.hidden = true;
-        fieldsetStepSelectPlan.hidden = true;
+        nodeStepSelectPlan.hidden = true;
         fieldsetStepAddOns.hidden = true;
         sectionStepSummary.hidden = false;
         return;
