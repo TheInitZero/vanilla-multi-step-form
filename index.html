@@ -640,17 +640,22 @@
                             data-component="AddOnsSummary"
                             hidden
                         >
-                            <template id="addOnsSummaryDescription">
-                                <li class="addOnsSummary__description">
+                            <template
+                                id="addOnsSummaryDescription"
+                                data-for="AddOnsSummaryDescription"
+                            >
+                                <li
+                                    class="addOnsSummary__description"
+                                    data-component="AddOnsSummaryDescription"
+                                >
                                     <span
                                         class="text-muted"
-                                        data-selector="summaryAddOnName"
-                                    >Customizable
-                                        profile</span>
+                                        data-component="AddOnsSummaryDescription_name"
+                                    ></span>
                                     <span
                                         class="text-bold text-muted"
-                                        data-selector="summaryAddOnPrice"
-                                    >+$2/mo</span>
+                                        data-component="AddOnsSummaryDescription_price"
+                                    ></span>
                                 </li>
                             </template>
                         </ul>
