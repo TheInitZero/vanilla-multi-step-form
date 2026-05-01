@@ -38,7 +38,7 @@ let nodesSubscriptionOptionBonus = nodeStepSelectPlan.querySelectorAll(
 );
 
 let fieldsetStepAddOns = nodeSignupForm.querySelector("[data-component='StepAddOns']");
-let addOnPrices = document.querySelectorAll("[data-selector='addOnPrice']");
+let addOnPrices = fieldsetStepAddOns.querySelectorAll("[data-component='StepAddOns_price']");
 
 let sectionStepSummary = document.getElementById("section-step-summary");
 let summarySubscriptionPlan = document.getElementById("summarySubscriptionPlan");
