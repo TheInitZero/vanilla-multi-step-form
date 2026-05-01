@@ -595,6 +595,7 @@
                 <section
                     id="section-step-summary"
                     class="formStep flow-150"
+                    data-component="StepSummary"
                     hidden
                 >
                     <div class="formStep__header">
@@ -609,12 +610,17 @@
                         <section
                             aria-label="Subscription"
                             class="subscriptionSummary"
+                            data-component="SubscriptionSummaryDescription"
                         >
                             <p class="subscriptionSummary__description">
-                                <span id="summarySubscriptionPlan">Arcade (Monthly)</span>
+                                <span
+                                    id="summarySubscriptionPlan"
+                                    data-component="SubscriptionSummaryDescription_plan"
+                                >Arcade (Monthly)</span>
                                 <span
                                     id="summarySubscriptionPrice"
                                     class="text-bold"
+                                    data-component="SubscriptionSummaryDescription_price"
                                 >$9/mo</span>
                             </p>
 
@@ -629,32 +635,45 @@
 
                         <ul
                             id="addOnsSummary"
-                            aria-label="Add-ons"
                             class="addOnsSummary"
+                            aria-label="Add-ons"
+                            data-component="AddOnsSummary"
                             hidden
                         >
-                            <template id="addOnsSummaryDescription">
-                                <li class="addOnsSummary__description">
+                            <template
+                                id="addOnsSummaryDescription"
+                                data-for="AddOnsSummaryDescription"
+                            >
+                                <li
+                                    class="addOnsSummary__description"
+                                    data-component="AddOnsSummaryDescription"
+                                >
                                     <span
                                         class="text-muted"
-                                        data-selector="summaryAddOnName"
-                                    >Customizable
-                                        profile</span>
+                                        data-component="AddOnsSummaryDescription_name"
+                                    ></span>
                                     <span
                                         class="text-bold text-muted"
-                                        data-selector="summaryAddOnPrice"
-                                    >+$2/mo</span>
+                                        data-component="AddOnsSummaryDescription_price"
+                                    ></span>
                                 </li>
                             </template>
                         </ul>
 
                         <hr />
 
-                        <p class="totalSummary">
-                            <span id="totalSummaryBillingFreq">Total (Monthly)</span>
+                        <p
+                            class="totalSummary"
+                            data-component="TotalSummary"
+                        >
+                            <span
+                                id="totalSummaryBillingFreq"
+                                data-component="TotalSummary_billing"
+                            >Total (Monthly)</span>
                             <span
                                 id="totalSummaryPrice"
                                 class="text-bold"
+                                data-component="TotalSummary_price"
                             >$13/mo</span>
                         </p>
                     </div>
