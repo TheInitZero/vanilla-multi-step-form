@@ -42,23 +42,23 @@ let nodesAddOnOptionPrice = nodeStepAddOns.querySelectorAll(
     "[data-component='AddOnOption_price']"
 );
 
-let sectionStepSummary = nodeSignupForm.querySelector("[data-component='StepSummary']");
-let summarySubscriptionPlan = sectionStepSummary.querySelector(
+let nodeStepSummary = nodeSignupForm.querySelector("[data-component='StepSummary']");
+let summarySubscriptionPlan = nodeStepSummary.querySelector(
     "[data-component='SubscriptionSummaryDescription_plan']"
 );
-let summarySubscriptionPrice = sectionStepSummary.querySelector(
+let summarySubscriptionPrice = nodeStepSummary.querySelector(
     "[data-component='SubscriptionSummaryDescription_price']"
 );
-let ulAddOnsSummary = sectionStepSummary.querySelector(
+let ulAddOnsSummary = nodeStepSummary.querySelector(
     "[data-component='AddOnsSummary']"
 );
-let templateAddOnsSummaryDescription = sectionStepSummary.querySelector(
+let templateAddOnsSummaryDescription = nodeStepSummary.querySelector(
     "template[data-for='AddOnsSummaryDescription']"
 );
-let totalSummaryBillingFreq = sectionStepSummary.querySelector(
+let totalSummaryBillingFreq = nodeStepSummary.querySelector(
     "[data-component='TotalSummary_billing']"
 );
-let totalSummaryPrice = sectionStepSummary.querySelector(
+let totalSummaryPrice = nodeStepSummary.querySelector(
     "[data-component='TotalSummary_price']"
 );
 
@@ -92,7 +92,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         nodeStepYourInfo.hidden = false;
         nodeStepSelectPlan.hidden = true;
         nodeStepAddOns.hidden = true;
-        sectionStepSummary.hidden = true;
+        nodeStepSummary.hidden = true;
         return;
     }
 
@@ -100,7 +100,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         nodeStepYourInfo.hidden = true;
         nodeStepSelectPlan.hidden = false;
         nodeStepAddOns.hidden = true;
-        sectionStepSummary.hidden = true;
+        nodeStepSummary.hidden = true;
         return;
     }
 
@@ -108,7 +108,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         nodeStepYourInfo.hidden = true;
         nodeStepSelectPlan.hidden = true;
         nodeStepAddOns.hidden = false;
-        sectionStepSummary.hidden = true;
+        nodeStepSummary.hidden = true;
         return;
     }
 
@@ -116,7 +116,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         nodeStepYourInfo.hidden = true;
         nodeStepSelectPlan.hidden = true;
         nodeStepAddOns.hidden = true;
-        sectionStepSummary.hidden = false;
+        nodeStepSummary.hidden = false;
         return;
     }
 });
