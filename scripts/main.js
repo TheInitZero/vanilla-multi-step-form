@@ -43,8 +43,12 @@ let nodesAddOnOptionPrice = nodeStepAddOns.querySelectorAll(
 );
 
 let sectionStepSummary = nodeSignupForm.querySelector("[data-component='StepSummary']");
-let summarySubscriptionPlan = document.getElementById("summarySubscriptionPlan");
-let summarySubscriptionPrice = document.getElementById("summarySubscriptionPrice");
+let summarySubscriptionPlan = sectionStepSummary.querySelector(
+    "[data-component='SubscriptionSummaryDescription_plan']"
+);
+let summarySubscriptionPrice = sectionStepSummary.querySelector(
+    "[data-component='SubscriptionSummaryDescription_price']"
+);
 let ulAddOnsSummary = document.querySelector("ul#addOnsSummary");
 let templateAddOnsSummaryDescription = document.querySelector("template#addOnsSummaryDescription");
 let totalSummaryBillingFreq = document.getElementById("totalSummaryBillingFreq");
