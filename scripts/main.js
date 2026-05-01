@@ -37,11 +37,10 @@ let nodesSubscriptionOptionBonus = nodeStepSelectPlan.querySelectorAll(
     "[data-component='SubscriptionOption_bonus']"
 );
 
-let fieldsetStepAddOns = document.getElementById("fieldset-step-add-ons");
-let sectionStepSummary = document.getElementById("section-step-summary");
-
+let fieldsetStepAddOns = nodeSignupForm.querySelector("[data-component='StepAddOns']");
 let addOnPrices = document.querySelectorAll("[data-selector='addOnPrice']");
 
+let sectionStepSummary = document.getElementById("section-step-summary");
 let summarySubscriptionPlan = document.getElementById("summarySubscriptionPlan");
 let summarySubscriptionPrice = document.getElementById("summarySubscriptionPrice");
 let ulAddOnsSummary = document.querySelector("ul#addOnsSummary");
