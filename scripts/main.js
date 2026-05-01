@@ -49,7 +49,7 @@ let nodeSubscriptionSummaryDescriptionPlan = nodeStepSummary.querySelector(
 let nodeSubscriptionSummaryDescriptionPrice = nodeStepSummary.querySelector(
     "[data-component='SubscriptionSummaryDescription_price']"
 );
-let ulAddOnsSummary = nodeStepSummary.querySelector(
+let nodeAddOnsSummary = nodeStepSummary.querySelector(
     "[data-component='AddOnsSummary']"
 );
 let templateAddOnsSummaryDescription = nodeStepSummary.querySelector(
@@ -149,9 +149,9 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     nodeSubscriptionSummaryDescriptionPrice.innerText = `$${subscriptionPrice}/${priceSuffix}`;
 
     if (addOns.length == 0) {
-        ulAddOnsSummary.hidden = true;
+        nodeAddOnsSummary.hidden = true;
     } else {
-        ulAddOnsSummary.innerHTML = "";
+        nodeAddOnsSummary.innerHTML = "";
 
         for (let id of addOns) {
             let addOnData = data.addOns[id];
@@ -168,10 +168,10 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
             summaryAddOnName.innerText = addOnData.name;
             summaryAddOnPrice.innerText = `+$${addOnData.price[billingFreq]}/${priceSuffix}`;
 
-            ulAddOnsSummary.appendChild(li);
+            nodeAddOnsSummary.appendChild(li);
         }
 
-        ulAddOnsSummary.hidden = false;
+        nodeAddOnsSummary.hidden = false;
     }
 
     totalSummaryBillingFreq.innerText = `Total (${capitalize(billingFreq)})`;
