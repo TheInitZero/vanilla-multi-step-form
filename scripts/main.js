@@ -37,8 +37,8 @@ let nodesSubscriptionOptionBonus = nodeStepSelectPlan.querySelectorAll(
     "[data-component='SubscriptionOption_bonus']"
 );
 
-let fieldsetStepAddOns = nodeSignupForm.querySelector("[data-component='StepAddOns']");
-let addOnPrices = fieldsetStepAddOns.querySelectorAll("[data-component='StepAddOns_price']");
+let nodeStepAddOns = nodeSignupForm.querySelector("[data-component='StepAddOns']");
+let addOnPrices = nodeStepAddOns.querySelectorAll("[data-component='StepAddOns_price']");
 
 let sectionStepSummary = document.getElementById("section-step-summary");
 let summarySubscriptionPlan = document.getElementById("summarySubscriptionPlan");
@@ -77,7 +77,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     if (model.currentStep == "your-info") {
         nodeStepYourInfo.hidden = false;
         nodeStepSelectPlan.hidden = true;
-        fieldsetStepAddOns.hidden = true;
+        nodeStepAddOns.hidden = true;
         sectionStepSummary.hidden = true;
         return;
     }
@@ -85,7 +85,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     if (model.currentStep == "select-plan") {
         nodeStepYourInfo.hidden = true;
         nodeStepSelectPlan.hidden = false;
-        fieldsetStepAddOns.hidden = true;
+        nodeStepAddOns.hidden = true;
         sectionStepSummary.hidden = true;
         return;
     }
@@ -93,7 +93,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     if (model.currentStep == "add-ons") {
         nodeStepYourInfo.hidden = true;
         nodeStepSelectPlan.hidden = true;
-        fieldsetStepAddOns.hidden = false;
+        nodeStepAddOns.hidden = false;
         sectionStepSummary.hidden = true;
         return;
     }
@@ -101,7 +101,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     if (model.currentStep == "summary") {
         nodeStepYourInfo.hidden = true;
         nodeStepSelectPlan.hidden = true;
-        fieldsetStepAddOns.hidden = true;
+        nodeStepAddOns.hidden = true;
         sectionStepSummary.hidden = false;
         return;
     }
