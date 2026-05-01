@@ -43,7 +43,7 @@ let nodesAddOnOptionPrice = nodeStepAddOns.querySelectorAll(
 );
 
 let nodeStepSummary = nodeSignupForm.querySelector("[data-component='StepSummary']");
-let summarySubscriptionPlan = nodeStepSummary.querySelector(
+let nodeSubscriptionSummaryDescriptionPlan = nodeStepSummary.querySelector(
     "[data-component='SubscriptionSummaryDescription_plan']"
 );
 let summarySubscriptionPrice = nodeStepSummary.querySelector(
@@ -145,7 +145,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         return res;
     })();
 
-    summarySubscriptionPlan.innerText = `${capitalize(subLevel)} (${capitalize(billingFreq)})`;
+    nodeSubscriptionSummaryDescriptionPlan.innerText = `${capitalize(subLevel)} (${capitalize(billingFreq)})`;
     summarySubscriptionPrice.innerText = `$${subscriptionPrice}/${priceSuffix}`;
 
     if (addOns.length == 0) {
