@@ -49,7 +49,9 @@ let summarySubscriptionPlan = sectionStepSummary.querySelector(
 let summarySubscriptionPrice = sectionStepSummary.querySelector(
     "[data-component='SubscriptionSummaryDescription_price']"
 );
-let ulAddOnsSummary = document.querySelector("ul#addOnsSummary");
+let ulAddOnsSummary = sectionStepSummary.querySelector(
+    "[data-component='AddOnsSummary']"
+);
 let templateAddOnsSummaryDescription = document.querySelector("template#addOnsSummaryDescription");
 let totalSummaryBillingFreq = document.getElementById("totalSummaryBillingFreq");
 let totalSummaryPrice = document.getElementById("totalSummaryPrice");
