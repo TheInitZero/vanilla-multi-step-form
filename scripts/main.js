@@ -38,7 +38,9 @@ let nodesSubscriptionOptionBonus = nodeStepSelectPlan.querySelectorAll(
 );
 
 let nodeStepAddOns = nodeSignupForm.querySelector("[data-component='StepAddOns']");
-let addOnPrices = nodeStepAddOns.querySelectorAll("[data-component='AddOnOption_price']");
+let nodesAddOnOptionPrice = nodeStepAddOns.querySelectorAll(
+    "[data-component='AddOnOption_price']"
+);
 
 let sectionStepSummary = document.getElementById("section-step-summary");
 let summarySubscriptionPlan = document.getElementById("summarySubscriptionPlan");
@@ -191,7 +193,7 @@ document.addEventListener("BILLING_FREQ.CHANGE", function (event) {
         node.hidden = billingFreq == "monthly";
     }
 
-    for (let node of addOnPrices) {
+    for (let node of nodesAddOnOptionPrice) {
         node.innerText =
             billingFreq == "monthly"
                 ? node.dataset.priceMonthly
