@@ -55,8 +55,12 @@ let ulAddOnsSummary = sectionStepSummary.querySelector(
 let templateAddOnsSummaryDescription = sectionStepSummary.querySelector(
     "template[data-for='AddOnsSummaryDescription']"
 );
-let totalSummaryBillingFreq = document.getElementById("totalSummaryBillingFreq");
-let totalSummaryPrice = document.getElementById("totalSummaryPrice");
+let totalSummaryBillingFreq = sectionStepSummary.querySelector(
+    "[data-component='TotalSummary_billing']"
+);
+let totalSummaryPrice = sectionStepSummary.querySelector(
+    "[data-component='TotalSummary_price']"
+);
 
 let buttonNextYourInfo = document.getElementById("button-next-your-info");
 let buttonBackSelectPlan = document.getElementById("button-back-select-plan");
