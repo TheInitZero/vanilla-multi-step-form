@@ -52,7 +52,9 @@ let summarySubscriptionPrice = sectionStepSummary.querySelector(
 let ulAddOnsSummary = sectionStepSummary.querySelector(
     "[data-component='AddOnsSummary']"
 );
-let templateAddOnsSummaryDescription = document.querySelector("template#addOnsSummaryDescription");
+let templateAddOnsSummaryDescription = sectionStepSummary.querySelector(
+    "template[data-for='AddOnsSummaryDescription']"
+);
 let totalSummaryBillingFreq = document.getElementById("totalSummaryBillingFreq");
 let totalSummaryPrice = document.getElementById("totalSummaryPrice");
 
@@ -152,8 +154,12 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
             /**@type {HTMLLIElement} */
             let li = templateAddOnsSummaryDescription.content.cloneNode(true);
-            let summaryAddOnName = li.querySelector("[data-selector='summaryAddOnName']");
-            let summaryAddOnPrice = li.querySelector("[data-selector='summaryAddOnPrice']");
+            let summaryAddOnName = li.querySelector(
+                "[data-component='AddOnsSummaryDescription_name']"
+            );
+            let summaryAddOnPrice = li.querySelector(
+                "[data-component='AddOnsSummaryDescription_price']"
+            );
 
             summaryAddOnName.innerText = addOnData.name;
             summaryAddOnPrice.innerText = `+$${addOnData.price[billingFreq]}/${priceSuffix}`;
