@@ -1,26 +1,14 @@
 import { SignupProgressStep, SignupProgressActor } from "./components/signup-progress.js";
-import {
-    InputField,
-    validateEmail,
-    validateName,
-    validateTel,
-} from "./components/input-field.js";
+import { StepYourInfo } from "./components/step-your-info.js";
 import { data } from "./data.js";
 
 let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
 
-let nodeStepYourInfo = nodeSignupForm.querySelector("[data-component='StepYourInfo']");
-let componentInputFieldName = new InputField(
-    nodeStepYourInfo.querySelector("[data-component='InputField'][data-for='name']"),
-    validateName
-);
-let componentInputFieldEmail = new InputField(
-    nodeStepYourInfo.querySelector("[data-component='InputField'][data-for='email']"),
-    validateEmail
-);
-let componentInputFieldTel = new InputField(
-    nodeStepYourInfo.querySelector("[data-component='InputField'][data-for='tel']"),
-    validateTel
+new StepYourInfo(
+    nodeSignupForm.querySelector("[data-component='StepYourInfo']"),
+    function (isInfoValid) {
+        signupProgressActor.send({ type: "YOUR_INFO.NEXT", isInfoValid });
+    }
 );
 
 let nodeStepSelectPlan = nodeSignupForm.querySelector("[data-component='StepSelectPlan']");
@@ -62,7 +50,6 @@ let nodeTotalSummaryPrice = nodeStepSummary.querySelector(
     "[data-component='TotalSummary_price']"
 );
 
-let buttonNextYourInfo = document.getElementById("button-next-your-info");
 let buttonBackSelectPlan = document.getElementById("button-back-select-plan");
 let buttonNextSelectPlan = document.getElementById("button-next-select-plan");
 let buttonBackAddOns = document.getElementById("button-back-add-ons");
@@ -89,7 +76,6 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     let model = event.detail;
 
     if (model.currentStep == "your-info") {
-        nodeStepYourInfo.hidden = false;
         nodeStepSelectPlan.hidden = true;
         nodeStepAddOns.hidden = true;
         nodeStepSummary.hidden = true;
@@ -97,7 +83,6 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     }
 
     if (model.currentStep == "select-plan") {
-        nodeStepYourInfo.hidden = true;
         nodeStepSelectPlan.hidden = false;
         nodeStepAddOns.hidden = true;
         nodeStepSummary.hidden = true;
@@ -105,7 +90,6 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     }
 
     if (model.currentStep == "add-ons") {
-        nodeStepYourInfo.hidden = true;
         nodeStepSelectPlan.hidden = true;
         nodeStepAddOns.hidden = false;
         nodeStepSummary.hidden = true;
@@ -113,7 +97,6 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     }
 
     if (model.currentStep == "summary") {
-        nodeStepYourInfo.hidden = true;
         nodeStepSelectPlan.hidden = true;
         nodeStepAddOns.hidden = true;
         nodeStepSummary.hidden = false;
@@ -182,19 +165,6 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     }
 });
 
-document.addEventListener("YOUR_INFO.UPDATE", function () {
-    let isInfoValid =
-        componentInputFieldName.isValid &&
-        componentInputFieldEmail.isValid &&
-        componentInputFieldTel.isValid;
-
-    if (isInfoValid) {
-        buttonNextYourInfo.removeAttribute("disabled");
-    } else {
-        buttonNextYourInfo.setAttribute("disabled", "");
-    }
-});
-
 document.addEventListener("BILLING_FREQ.CHANGE", function (event) {
     let billingFreq = event.detail;
 
@@ -229,15 +199,6 @@ nodeBillingOptionInputYearly.addEventListener("change", function () {
         detail: nodeBillingOptionInputYearly.value,
     });
     document.dispatchEvent(customEvent);
-});
-
-buttonNextYourInfo.addEventListener("click", function () {
-    let isInfoValid =
-        componentInputFieldName.isValid &&
-        componentInputFieldEmail.isValid &&
-        componentInputFieldTel.isValid;
-
-    signupProgressActor.send({ type: "YOUR_INFO.NEXT", isInfoValid });
 });
 
 buttonBackSelectPlan.addEventListener("click", function () {
