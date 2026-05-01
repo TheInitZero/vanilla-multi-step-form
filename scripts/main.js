@@ -55,7 +55,7 @@ let nodeAddOnsSummary = nodeStepSummary.querySelector(
 let templateAddOnsSummaryDescription = nodeStepSummary.querySelector(
     "template[data-for='AddOnsSummaryDescription']"
 );
-let totalSummaryBillingFreq = nodeStepSummary.querySelector(
+let nodeTotalSummaryBilling = nodeStepSummary.querySelector(
     "[data-component='TotalSummary_billing']"
 );
 let totalSummaryPrice = nodeStepSummary.querySelector(
@@ -174,7 +174,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         nodeAddOnsSummary.hidden = false;
     }
 
-    totalSummaryBillingFreq.innerText = `Total (${capitalize(billingFreq)})`;
+    nodeTotalSummaryBilling.innerText = `Total (${capitalize(billingFreq)})`;
     totalSummaryPrice.innerText = `$${totalPrice}/${priceSuffix}`;
 
     function capitalize(word) {
