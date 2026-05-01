@@ -42,7 +42,7 @@ let nodesAddOnOptionPrice = nodeStepAddOns.querySelectorAll(
     "[data-component='AddOnOption_price']"
 );
 
-let sectionStepSummary = document.getElementById("section-step-summary");
+let sectionStepSummary = nodeSignupForm.querySelector("[data-component='StepSummary']");
 let summarySubscriptionPlan = document.getElementById("summarySubscriptionPlan");
 let summarySubscriptionPrice = document.getElementById("summarySubscriptionPrice");
 let ulAddOnsSummary = document.querySelector("ul#addOnsSummary");
