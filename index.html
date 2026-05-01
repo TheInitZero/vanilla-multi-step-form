@@ -450,6 +450,7 @@
                 <fieldset
                     id="fieldset-step-add-ons"
                     class="formStep flow-150"
+                    data-component="StepAddOns"
                     hidden
                 >
                     <div class="formStep__header">
@@ -462,7 +463,10 @@
                     </div>
 
                     <ul class="addOnOptionGroup">
-                        <li class="addOnOptionField">
+                        <li
+                            class="addOnOptionField"
+                            data-component="AddOnOption"
+                        >
                             <input
                                 type="checkbox"
                                 name="addOns"
@@ -476,13 +480,12 @@
                                 <label
                                     for="checkboxAddOnsOnlineService"
                                     class="addOnOptionDescription__label"
-                                >Online
-                                    service</label>
+                                >Online service</label>
                                 <!-- $1/mo | $10/yr -->
                                 <p
                                     id="checkboxAddOnsOnlineServicePrice"
                                     class="text-bold text-muted text-small addOnOptionDescription__price"
-                                    data-selector="addOnPrice"
+                                    data-component="AddOnOption_price"
                                     data-price-monthly="$1/mo"
                                     data-price-yearly="$10/yr"
                                 >
@@ -497,7 +500,10 @@
                             </div>
                         </li>
 
-                        <li class="addOnOptionField">
+                        <li
+                            class="addOnOptionField"
+                            data-component="AddOnOption"
+                        >
                             <input
                                 type="checkbox"
                                 name="addOns"
@@ -511,13 +517,12 @@
                                 <label
                                     for="checkboxAddOnsLargerStorage"
                                     class="addOnOptionDescription__label"
-                                >Larger
-                                    storage</label>
+                                >Larger storage</label>
                                 <!-- $2/mo | $20/yr -->
                                 <p
                                     id="checkboxAddOnsLargerStoragePrice"
                                     class="text-bold text-muted text-small addOnOptionDescription__price"
-                                    data-selector="addOnPrice"
+                                    data-component="AddOnOption_price"
                                     data-price-monthly="$2/mo"
                                     data-price-yearly="$20/yr"
                                 >
@@ -532,7 +537,10 @@
                             </div>
                         </li>
 
-                        <li class="addOnOptionField">
+                        <li
+                            class="addOnOptionField"
+                            data-component="AddOnOption"
+                        >
                             <input
                                 type="checkbox"
                                 name="addOns"
@@ -551,7 +559,7 @@
                                 <p
                                     id="checkboxAddOnsCustomProfilePrice"
                                     class="text-bold text-muted text-small addOnOptionDescription__price"
-                                    data-selector="addOnPrice"
+                                    data-component="AddOnOption_price"
                                     data-price-monthly="$2/mo"
                                     data-price-yearly="$20/yr"
                                 >

@@ -37,11 +37,12 @@ let nodesSubscriptionOptionBonus = nodeStepSelectPlan.querySelectorAll(
     "[data-component='SubscriptionOption_bonus']"
 );
 
-let fieldsetStepAddOns = document.getElementById("fieldset-step-add-ons");
+let nodeStepAddOns = nodeSignupForm.querySelector("[data-component='StepAddOns']");
+let nodesAddOnOptionPrice = nodeStepAddOns.querySelectorAll(
+    "[data-component='AddOnOption_price']"
+);
+
 let sectionStepSummary = document.getElementById("section-step-summary");
-
-let addOnPrices = document.querySelectorAll("[data-selector='addOnPrice']");
-
 let summarySubscriptionPlan = document.getElementById("summarySubscriptionPlan");
 let summarySubscriptionPrice = document.getElementById("summarySubscriptionPrice");
 let ulAddOnsSummary = document.querySelector("ul#addOnsSummary");
@@ -78,7 +79,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     if (model.currentStep == "your-info") {
         nodeStepYourInfo.hidden = false;
         nodeStepSelectPlan.hidden = true;
-        fieldsetStepAddOns.hidden = true;
+        nodeStepAddOns.hidden = true;
         sectionStepSummary.hidden = true;
         return;
     }
@@ -86,7 +87,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     if (model.currentStep == "select-plan") {
         nodeStepYourInfo.hidden = true;
         nodeStepSelectPlan.hidden = false;
-        fieldsetStepAddOns.hidden = true;
+        nodeStepAddOns.hidden = true;
         sectionStepSummary.hidden = true;
         return;
     }
@@ -94,7 +95,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     if (model.currentStep == "add-ons") {
         nodeStepYourInfo.hidden = true;
         nodeStepSelectPlan.hidden = true;
-        fieldsetStepAddOns.hidden = false;
+        nodeStepAddOns.hidden = false;
         sectionStepSummary.hidden = true;
         return;
     }
@@ -102,7 +103,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     if (model.currentStep == "summary") {
         nodeStepYourInfo.hidden = true;
         nodeStepSelectPlan.hidden = true;
-        fieldsetStepAddOns.hidden = true;
+        nodeStepAddOns.hidden = true;
         sectionStepSummary.hidden = false;
         return;
     }
@@ -192,7 +193,7 @@ document.addEventListener("BILLING_FREQ.CHANGE", function (event) {
         node.hidden = billingFreq == "monthly";
     }
 
-    for (let node of addOnPrices) {
+    for (let node of nodesAddOnOptionPrice) {
         node.innerText =
             billingFreq == "monthly"
                 ? node.dataset.priceMonthly
