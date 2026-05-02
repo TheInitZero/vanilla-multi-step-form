@@ -1,6 +1,7 @@
 import { SignupProgressStep, SignupProgressActor } from "./components/signup-progress.js";
 import { StepYourInfo } from "./components/step-your-info.js";
 import { StepSelectPlan } from "./components/step-select-plan.js";
+import { StepAddOns } from "./components/step-add-ons.js";
 import { data } from "./data.js";
 
 let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
@@ -23,9 +24,14 @@ new StepSelectPlan(
     }
 );
 
-let nodeStepAddOns = nodeSignupForm.querySelector("[data-component='StepAddOns']");
-let nodesAddOnOptionPrice = nodeStepAddOns.querySelectorAll(
-    "[data-component='AddOnOption_price']"
+new StepAddOns(
+    nodeSignupForm.querySelector("[data-component='StepAddOns']"),
+    function onBack() {
+        signupProgressActor.send({ type: "ADD_ONS.BACK" });
+    },
+    function onNext() {
+        signupProgressActor.send({ type: "ADD_ONS.NEXT" });
+    }
 );
 
 let nodeStepSummary = nodeSignupForm.querySelector("[data-component='StepSummary']");
@@ -48,8 +54,6 @@ let nodeTotalSummaryPrice = nodeStepSummary.querySelector(
     "[data-component='TotalSummary_price']"
 );
 
-let buttonBackAddOns = document.getElementById("button-back-add-ons");
-let buttonNextAddOns = document.getElementById("button-next-add-ons");
 let buttonChangeSubscriptionSummary = document.getElementById(
     "button-change-subscription-summary",
 );
@@ -68,30 +72,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
 document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     let model = event.detail;
-
-    if (model.currentStep == "your-info") {
-        nodeStepAddOns.hidden = true;
-        nodeStepSummary.hidden = true;
-        return;
-    }
-
-    if (model.currentStep == "select-plan") {
-        nodeStepAddOns.hidden = true;
-        nodeStepSummary.hidden = true;
-        return;
-    }
-
-    if (model.currentStep == "add-ons") {
-        nodeStepAddOns.hidden = false;
-        nodeStepSummary.hidden = true;
-        return;
-    }
-
-    if (model.currentStep == "summary") {
-        nodeStepAddOns.hidden = true;
-        nodeStepSummary.hidden = false;
-        return;
-    }
+    nodeStepSummary.hidden = model.currentStep != "summary";
 });
 
 document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
@@ -153,25 +134,6 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     function capitalize(word) {
         return word[0].toUpperCase() + word.slice(1);
     }
-});
-
-document.addEventListener("BILLING_FREQ.CHANGE", function (event) {
-    let billingFreq = event.detail;
-
-    for (let node of nodesAddOnOptionPrice) {
-        node.innerText =
-            billingFreq == "monthly"
-                ? node.dataset.priceMonthly
-                : node.dataset.priceYearly;
-    }
-});
-
-buttonBackAddOns.addEventListener("click", function () {
-    signupProgressActor.send({ type: "ADD_ONS.BACK" });
-});
-
-buttonNextAddOns.addEventListener("click", function () {
-    signupProgressActor.send({ type: "ADD_ONS.NEXT" });
 });
 
 buttonChangeSubscriptionSummary.addEventListener("click", function () {
