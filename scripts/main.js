@@ -6,7 +6,7 @@ let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
 
 new StepYourInfo(
     nodeSignupForm.querySelector("[data-component='StepYourInfo']"),
-    function (isInfoValid) {
+    function onNext(isInfoValid) {
         signupProgressActor.send({ type: "YOUR_INFO.NEXT", isInfoValid });
     }
 );
