@@ -1,8 +1,10 @@
 import { SignupProgressStep, SignupProgressActor } from "./components/signup-progress.js";
 import { StepYourInfo } from "./components/step-your-info.js";
+import { StepSelectPlan } from "./components/step-select-plan.js";
 import { data } from "./data.js";
 
 let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
+let signupProgressActor = SignupProgressActor();
 
 new StepYourInfo(
     nodeSignupForm.querySelector("[data-component='StepYourInfo']"),
@@ -11,18 +13,14 @@ new StepYourInfo(
     }
 );
 
-let nodeStepSelectPlan = nodeSignupForm.querySelector("[data-component='StepSelectPlan']");
-let nodeBillingOptionInputMonthly = nodeStepSelectPlan.querySelector(
-    "[data-component='BillingOption_input'][value='monthly']"
-);
-let nodeBillingOptionInputYearly = nodeStepSelectPlan.querySelector(
-    "[data-component='BillingOption_input'][value='yearly']"
-);
-let nodesSubscriptionOptionPrice = nodeStepSelectPlan.querySelectorAll(
-    "[data-component='SubscriptionOption_price']"
-);
-let nodesSubscriptionOptionBonus = nodeStepSelectPlan.querySelectorAll(
-    "[data-component='SubscriptionOption_bonus']"
+new StepSelectPlan(
+    nodeSignupForm.querySelector("[data-component='StepSelectPlan']"),
+    function onBack() {
+        signupProgressActor.send({ type: "SELECT_PLAN.BACK" });
+    },
+    function onNext() {
+        signupProgressActor.send({ type: "SELECT_PLAN.NEXT" });
+    }
 );
 
 let nodeStepAddOns = nodeSignupForm.querySelector("[data-component='StepAddOns']");
@@ -50,8 +48,6 @@ let nodeTotalSummaryPrice = nodeStepSummary.querySelector(
     "[data-component='TotalSummary_price']"
 );
 
-let buttonBackSelectPlan = document.getElementById("button-back-select-plan");
-let buttonNextSelectPlan = document.getElementById("button-next-select-plan");
 let buttonBackAddOns = document.getElementById("button-back-add-ons");
 let buttonNextAddOns = document.getElementById("button-next-add-ons");
 let buttonChangeSubscriptionSummary = document.getElementById(
@@ -60,8 +56,6 @@ let buttonChangeSubscriptionSummary = document.getElementById(
 let buttonBackSummary = document.getElementById("button-back-summary");
 
 let componentsSignupProgressStep = Array.from(document.querySelectorAll("[data-component='SignupProgressStep']")).map(SignupProgressStep);
-
-let signupProgressActor = SignupProgressActor();
 
 document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     let model = event.detail;
@@ -76,28 +70,24 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     let model = event.detail;
 
     if (model.currentStep == "your-info") {
-        nodeStepSelectPlan.hidden = true;
         nodeStepAddOns.hidden = true;
         nodeStepSummary.hidden = true;
         return;
     }
 
     if (model.currentStep == "select-plan") {
-        nodeStepSelectPlan.hidden = false;
         nodeStepAddOns.hidden = true;
         nodeStepSummary.hidden = true;
         return;
     }
 
     if (model.currentStep == "add-ons") {
-        nodeStepSelectPlan.hidden = true;
         nodeStepAddOns.hidden = false;
         nodeStepSummary.hidden = true;
         return;
     }
 
     if (model.currentStep == "summary") {
-        nodeStepSelectPlan.hidden = true;
         nodeStepAddOns.hidden = true;
         nodeStepSummary.hidden = false;
         return;
@@ -168,45 +158,12 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 document.addEventListener("BILLING_FREQ.CHANGE", function (event) {
     let billingFreq = event.detail;
 
-    for (let node of nodesSubscriptionOptionPrice) {
-        node.innerText =
-            billingFreq == "monthly"
-                ? node.dataset.priceMonthly
-                : node.dataset.priceYearly;
-    }
-
-    for (let node of nodesSubscriptionOptionBonus) {
-        node.hidden = billingFreq == "monthly";
-    }
-
     for (let node of nodesAddOnOptionPrice) {
         node.innerText =
             billingFreq == "monthly"
                 ? node.dataset.priceMonthly
                 : node.dataset.priceYearly;
     }
-});
-
-nodeBillingOptionInputMonthly.addEventListener("change", function () {
-    let customEvent = new CustomEvent("BILLING_FREQ.CHANGE", {
-        detail: nodeBillingOptionInputMonthly.value,
-    });
-    document.dispatchEvent(customEvent);
-});
-
-nodeBillingOptionInputYearly.addEventListener("change", function () {
-    let customEvent = new CustomEvent("BILLING_FREQ.CHANGE", {
-        detail: nodeBillingOptionInputYearly.value,
-    });
-    document.dispatchEvent(customEvent);
-});
-
-buttonBackSelectPlan.addEventListener("click", function () {
-    signupProgressActor.send({ type: "SELECT_PLAN.BACK" });
-});
-
-buttonNextSelectPlan.addEventListener("click", function () {
-    signupProgressActor.send({ type: "SELECT_PLAN.NEXT" });
 });
 
 buttonBackAddOns.addEventListener("click", function () {
