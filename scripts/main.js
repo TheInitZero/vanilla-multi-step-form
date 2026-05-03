@@ -2,7 +2,7 @@ import { SignupProgressStep, SignupProgressActor } from "./components/signup-pro
 import { StepYourInfo } from "./components/step-your-info.js";
 import { StepSelectPlan } from "./components/step-select-plan.js";
 import { StepAddOns } from "./components/step-add-ons.js";
-import { SubscriptionSummary } from "./components/step-summary.js";
+import { SubscriptionSummary, TotalSummary } from "./components/step-summary.js";
 import { data } from "./data.js";
 
 let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
@@ -46,17 +46,15 @@ let subscriptionSummary = new SubscriptionSummary(
     }
 );
 
+let totalSummary = new TotalSummary(
+    nodeStepSummary.querySelector("[data-component='TotalSummary']")
+);
+
 let nodeAddOnsSummary = nodeStepSummary.querySelector(
     "[data-component='AddOnsSummary']"
 );
 let templateAddOnsSummaryDescription = nodeStepSummary.querySelector(
     "template[data-for='AddOnsSummaryDescription']"
-);
-let nodeTotalSummaryBilling = nodeStepSummary.querySelector(
-    "[data-component='TotalSummary_billing']"
-);
-let nodeTotalSummaryPrice = nodeStepSummary.querySelector(
-    "[data-component='TotalSummary_price']"
 );
 let buttonBackSummary = document.getElementById("button-back-summary");
 
@@ -129,8 +127,8 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         nodeAddOnsSummary.hidden = false;
     }
 
-    nodeTotalSummaryBilling.innerText = `Total (${capitalize(billingFreq)})`;
-    nodeTotalSummaryPrice.innerText = `$${totalPrice}/${priceSuffix}`;
+    totalSummary.setBilling(capitalize(billingFreq));
+    totalSummary.setPrice(totalPrice, priceSuffix);
 
     function capitalize(word) {
         return word[0].toUpperCase() + word.slice(1);

@@ -25,3 +25,25 @@ export class SubscriptionSummary {
         this.price.innerText = `$${price}/${suffix}`;
     }
 }
+
+export class TotalSummary {
+    constructor(node) {
+        this.node = node;
+
+        this.billing = this.node.querySelector(
+            "[data-component='TotalSummary_billing']"
+        );
+
+        this.price = this.node.querySelector(
+            "[data-component='TotalSummary_price']"
+        );
+    }
+
+    setBilling(frequency) {
+        this.billing.innerText = `Total (${frequency})`;
+    }
+
+    setPrice(price, suffix) {
+        this.price.innerText = `$${price}/${suffix}`;
+    }
+}
