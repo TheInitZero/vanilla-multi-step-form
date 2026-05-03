@@ -2,6 +2,7 @@ import { SignupProgressStep, SignupProgressActor } from "./components/signup-pro
 import { StepYourInfo } from "./components/step-your-info.js";
 import { StepSelectPlan } from "./components/step-select-plan.js";
 import { StepAddOns } from "./components/step-add-ons.js";
+import { SubscriptionSummary } from "./components/step-summary.js";
 import { data } from "./data.js";
 
 let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
@@ -35,12 +36,16 @@ new StepAddOns(
 );
 
 let nodeStepSummary = nodeSignupForm.querySelector("[data-component='StepSummary']");
-let nodeSubscriptionSummaryDescriptionPlan = nodeStepSummary.querySelector(
-    "[data-component='SubscriptionSummaryDescription_plan']"
+
+let subscriptionSummary = new SubscriptionSummary(
+    nodeStepSummary.querySelector(
+        "[data-component='SubscriptionSummary']"
+    ),
+    function onChangeSubscription() {
+        signupProgressActor.send({ type: "SUMMARY.CHANGE_SUBSCRIPTION" });
+    }
 );
-let nodeSubscriptionSummaryDescriptionPrice = nodeStepSummary.querySelector(
-    "[data-component='SubscriptionSummaryDescription_price']"
-);
+
 let nodeAddOnsSummary = nodeStepSummary.querySelector(
     "[data-component='AddOnsSummary']"
 );
@@ -52,10 +57,6 @@ let nodeTotalSummaryBilling = nodeStepSummary.querySelector(
 );
 let nodeTotalSummaryPrice = nodeStepSummary.querySelector(
     "[data-component='TotalSummary_price']"
-);
-
-let buttonChangeSubscriptionSummary = document.getElementById(
-    "button-change-subscription-summary",
 );
 let buttonBackSummary = document.getElementById("button-back-summary");
 
@@ -99,8 +100,8 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         return res;
     })();
 
-    nodeSubscriptionSummaryDescriptionPlan.innerText = `${capitalize(subLevel)} (${capitalize(billingFreq)})`;
-    nodeSubscriptionSummaryDescriptionPrice.innerText = `$${subscriptionPrice}/${priceSuffix}`;
+    subscriptionSummary.setPlan(capitalize(subLevel), capitalize(billingFreq));
+    subscriptionSummary.setPrice(subscriptionPrice, priceSuffix);
 
     if (addOns.length == 0) {
         nodeAddOnsSummary.hidden = true;
@@ -134,10 +135,6 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     function capitalize(word) {
         return word[0].toUpperCase() + word.slice(1);
     }
-});
-
-buttonChangeSubscriptionSummary.addEventListener("click", function () {
-    signupProgressActor.send({ type: "SUMMARY.CHANGE_SUBSCRIPTION" });
 });
 
 buttonBackSummary.addEventListener("click", function () {
