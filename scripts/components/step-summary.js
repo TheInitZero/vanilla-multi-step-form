@@ -47,3 +47,26 @@ export class TotalSummary {
         this.price.innerText = `$${price}/${suffix}`;
     }
 }
+
+export class AddOnsSummaryDescription {
+    constructor(template) {
+        this.template = template;
+    }
+
+    render(name, price) {
+        let clone = this.template.content.cloneNode(true);
+
+        let nodeName = clone.querySelector(
+            "[data-component='AddOnsSummaryDescription_name']"
+        );
+
+        let nodePrice = clone.querySelector(
+            "[data-component='AddOnsSummaryDescription_price']"
+        );
+
+        nodeName.innerText = name;
+        nodePrice.innerText = `+$${price.value}/${price.suffix}`;
+
+        return clone;
+    }
+}

@@ -2,7 +2,11 @@ import { SignupProgressStep, SignupProgressActor } from "./components/signup-pro
 import { StepYourInfo } from "./components/step-your-info.js";
 import { StepSelectPlan } from "./components/step-select-plan.js";
 import { StepAddOns } from "./components/step-add-ons.js";
-import { SubscriptionSummary, TotalSummary } from "./components/step-summary.js";
+import {
+    AddOnsSummaryDescription,
+    SubscriptionSummary,
+    TotalSummary
+} from "./components/step-summary.js";
 import { data } from "./data.js";
 
 let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
@@ -53,9 +57,13 @@ let totalSummary = new TotalSummary(
 let nodeAddOnsSummary = nodeStepSummary.querySelector(
     "[data-component='AddOnsSummary']"
 );
-let templateAddOnsSummaryDescription = nodeStepSummary.querySelector(
-    "template[data-for='AddOnsSummaryDescription']"
+
+let addOnsSummaryDescription = new AddOnsSummaryDescription(
+    nodeStepSummary.querySelector(
+        "template[data-for='AddOnsSummaryDescription']"
+    )
 );
+
 let buttonBackSummary = document.getElementById("button-back-summary");
 
 let componentsSignupProgressStep = Array.from(document.querySelectorAll("[data-component='SignupProgressStep']")).map(SignupProgressStep);
@@ -109,19 +117,15 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         for (let id of addOns) {
             let addOnData = data.addOns[id];
 
-            /**@type {HTMLLIElement} */
-            let li = templateAddOnsSummaryDescription.content.cloneNode(true);
-            let summaryAddOnName = li.querySelector(
-                "[data-component='AddOnsSummaryDescription_name']"
-            );
-            let summaryAddOnPrice = li.querySelector(
-                "[data-component='AddOnsSummaryDescription_price']"
+            let nodeDescription = addOnsSummaryDescription.render(
+                addOnData.name,
+                {
+                    value: addOnData.price[billingFreq],
+                    suffix: priceSuffix
+                }
             );
 
-            summaryAddOnName.innerText = addOnData.name;
-            summaryAddOnPrice.innerText = `+$${addOnData.price[billingFreq]}/${priceSuffix}`;
-
-            nodeAddOnsSummary.appendChild(li);
+            nodeAddOnsSummary.appendChild(nodeDescription);
         }
 
         nodeAddOnsSummary.hidden = false;
