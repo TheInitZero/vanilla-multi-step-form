@@ -3,7 +3,7 @@ import { StepYourInfo } from "./components/step-your-info.js";
 import { StepSelectPlan } from "./components/step-select-plan.js";
 import { StepAddOns } from "./components/step-add-ons.js";
 import {
-    AddOnsSummaryDescription,
+    AddOnsSummary,
     SubscriptionSummary,
     TotalSummary
 } from "./components/step-summary.js";
@@ -54,11 +54,10 @@ let totalSummary = new TotalSummary(
     nodeStepSummary.querySelector("[data-component='TotalSummary']")
 );
 
-let nodeAddOnsSummary = nodeStepSummary.querySelector(
+let addOnsSummary = new AddOnsSummary(
+    nodeStepSummary.querySelector(
     "[data-component='AddOnsSummary']"
-);
-
-let addOnsSummaryDescription = new AddOnsSummaryDescription(
+    ),
     nodeStepSummary.querySelector(
         "template[data-for='AddOnsSummaryDescription']"
     )
@@ -94,6 +93,7 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
 
     let priceSuffix = billingFreq == "monthly" ? "mo" : "yr";
     let subscriptionPrice = data.subscriptions[subLevel].price[billingFreq];
+
     let totalPrice = (function () {
         let res = subscriptionPrice;
 
@@ -106,31 +106,29 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         return res;
     })();
 
-    subscriptionSummary.setPlan(capitalize(subLevel), capitalize(billingFreq));
-    subscriptionSummary.setPrice(subscriptionPrice, priceSuffix);
-
-    if (addOns.length == 0) {
-        nodeAddOnsSummary.hidden = true;
-    } else {
-        nodeAddOnsSummary.innerHTML = "";
+    let addOnsSummaryDescriptionProps = (function () {
+        let res = [];
 
         for (let id of addOns) {
             let addOnData = data.addOns[id];
 
-            let nodeDescription = addOnsSummaryDescription.render(
-                addOnData.name,
-                {
+            let descriptionProp = {
+                name: addOnData.name,
+                price: {
                     value: addOnData.price[billingFreq],
                     suffix: priceSuffix
                 }
-            );
+            };
 
-            nodeAddOnsSummary.appendChild(nodeDescription);
+            res.push(descriptionProp);
         }
 
-        nodeAddOnsSummary.hidden = false;
-    }
+        return res;
+    })();
 
+    subscriptionSummary.setPlan(capitalize(subLevel), capitalize(billingFreq));
+    subscriptionSummary.setPrice(subscriptionPrice, priceSuffix);
+    addOnsSummary.render(addOns.length == 0, addOnsSummaryDescriptionProps);
     totalSummary.setBilling(capitalize(billingFreq));
     totalSummary.setPrice(totalPrice, priceSuffix);
 

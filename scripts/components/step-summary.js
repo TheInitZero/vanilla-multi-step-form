@@ -48,6 +48,27 @@ export class TotalSummary {
     }
 }
 
+export class AddOnsSummary {
+    constructor(node, descriptionTemplate) {
+        this.node = node;
+        this.description = new AddOnsSummaryDescription(descriptionTemplate);
+    }
+
+    render(isHidden, descriptionProps) {
+        if (isHidden) {
+            this.node.hidden = true;
+        } else {
+            this.node.hidden = false;
+            this.node.innerHTML = "";
+
+            for (let prop of descriptionProps) {
+                let descriptionNode = this.description.render(prop.name, prop.price);
+                this.node.appendChild(descriptionNode);
+            }
+        }
+    }
+}
+
 export class AddOnsSummaryDescription {
     constructor(template) {
         this.template = template;
