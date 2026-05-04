@@ -620,24 +620,25 @@
                         <section
                             aria-label="Subscription"
                             class="subscriptionSummary"
-                            data-component="SubscriptionSummaryDescription"
+                            data-component="SubscriptionSummary"
                         >
                             <p class="subscriptionSummary__description">
                                 <span
                                     id="summarySubscriptionPlan"
-                                    data-component="SubscriptionSummaryDescription_plan"
+                                    data-component="SubscriptionSummary_plan"
                                 >Arcade (Monthly)</span>
                                 <span
                                     id="summarySubscriptionPrice"
                                     class="text-bold"
-                                    data-component="SubscriptionSummaryDescription_price"
+                                    data-component="SubscriptionSummary_price"
                                 >$9/mo</span>
                             </p>
 
                             <button
                                 id="button-change-subscription-summary"
-                                type="button"
                                 class="subscriptionSummary__button"
+                                type="button"
+                                data-component="SubscriptionSummary_button"
                             >
                                 Change subscription
                             </button>
@@ -692,6 +693,8 @@
                         <button
                             id="button-back-summary"
                             type="button"
+                            data-component="StepSummary_button"
+                            data-action="back"
                         >
                             Go back
                         </button>
