@@ -2,15 +2,14 @@ import { SignupProgressStep, SignupProgressActor } from "./components/signup-pro
 import { StepYourInfo } from "./components/step-your-info.js";
 import { StepSelectPlan } from "./components/step-select-plan.js";
 import { StepAddOns } from "./components/step-add-ons.js";
-import {
-    AddOnsSummary,
-    SubscriptionSummary,
-    TotalSummary
-} from "./components/step-summary.js";
+import { StepSummary } from "./components/step-summary.js";
 import { data } from "./data.js";
 
 let nodeSignupForm = document.querySelector("[data-component='SignupForm']");
 let signupProgressActor = SignupProgressActor();
+let componentsSignupProgressStep = Array
+    .from(document.querySelectorAll("[data-component='SignupProgressStep']"))
+    .map(SignupProgressStep);
 
 new StepYourInfo(
     nodeSignupForm.querySelector("[data-component='StepYourInfo']"),
@@ -39,33 +38,15 @@ new StepAddOns(
     }
 );
 
-let nodeStepSummary = nodeSignupForm.querySelector("[data-component='StepSummary']");
-
-let subscriptionSummary = new SubscriptionSummary(
-    nodeStepSummary.querySelector(
-        "[data-component='SubscriptionSummary']"
-    ),
+new StepSummary(
+    nodeSignupForm.querySelector("[data-component='StepSummary']"),
     function onChangeSubscription() {
         signupProgressActor.send({ type: "SUMMARY.CHANGE_SUBSCRIPTION" });
+    },
+    function onBack() {
+        signupProgressActor.send({ type: "SUMMARY.BACK" });
     }
 );
-
-let totalSummary = new TotalSummary(
-    nodeStepSummary.querySelector("[data-component='TotalSummary']")
-);
-
-let addOnsSummary = new AddOnsSummary(
-    nodeStepSummary.querySelector(
-    "[data-component='AddOnsSummary']"
-    ),
-    nodeStepSummary.querySelector(
-        "template[data-for='AddOnsSummaryDescription']"
-    )
-);
-
-let buttonBackSummary = document.getElementById("button-back-summary");
-
-let componentsSignupProgressStep = Array.from(document.querySelectorAll("[data-component='SignupProgressStep']")).map(SignupProgressStep);
 
 document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
     let model = event.detail;
@@ -74,11 +55,6 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         component.setStatus(model.statuses[component.getKey()]);
         component.setIsCurrent(component.getKey() == model.currentStep);
     }
-});
-
-document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
-    let model = event.detail;
-    nodeStepSummary.hidden = model.currentStep != "summary";
 });
 
 document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
@@ -126,19 +102,23 @@ document.addEventListener("SIGNUP_PROGRESS.UPDATE", function (event) {
         return res;
     })();
 
-    subscriptionSummary.setPlan(capitalize(subLevel), capitalize(billingFreq));
-    subscriptionSummary.setPrice(subscriptionPrice, priceSuffix);
-    addOnsSummary.render(addOns.length == 0, addOnsSummaryDescriptionProps);
-    totalSummary.setBilling(capitalize(billingFreq));
-    totalSummary.setPrice(totalPrice, priceSuffix);
+    let customEvent = new CustomEvent("SUMMARY.RENDER", {
+        detail: {
+            subscriptionPrice,
+            priceSuffix,
+            totalPrice,
+            addOnsSummaryDescriptionProps,
+            billingFrequency: capitalize(billingFreq),
+            subscriptionLevel: capitalize(subLevel),
+            isAddOnsSummaryHidden: addOns.length == 0,
+        }
+    });
+
+    document.dispatchEvent(customEvent);
 
     function capitalize(word) {
         return word[0].toUpperCase() + word.slice(1);
     }
-});
-
-buttonBackSummary.addEventListener("click", function () {
-    signupProgressActor.send({ type: "SUMMARY.BACK" });
 });
 
 nodeSignupForm.addEventListener("submit", function () {
